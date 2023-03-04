@@ -4,7 +4,7 @@ export default function Document() {
   const meta = {
     title: 'Nurmivaara Consulting Oy',
     description: 'Fullstack, Cloud and DevOps consulting',
-    image: '../public/metaimg.jpeg'
+    image: '/metaimg.jpeg'
   }
 
   return (
