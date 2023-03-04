@@ -2,9 +2,9 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   const meta = {
-    title: 'Sami Nurmivaara Portfolio',
-    description: 'Personal portfolio of Sami Nurmivaara.',
-    image: 'https://assets.vercel.com/image/upload/q_auto/front/vercel/dps.png'
+    title: 'Nurmivaara Consulting Oy',
+    description: 'Fullstack, Cloud and DevOps consulting',
+    image: '../public/metaimg.jpeg'
   }
 
   return (
