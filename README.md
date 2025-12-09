@@ -1,12 +1,39 @@
-# Portfolio Starter Kit
+# Sami Nurmivaara Portfolio
 
-This portfolio is built with **Next.js** and a library called [Nextra](https://nextra.vercel.app/). It allows you to write Markdown and focus on the _content_ of your portfolio. This starter includes:
+This portfolio is built with **Next.js 16** and [Nextra](https://nextra.vercel.app/). It allows you to write Markdown and focus on the _content_ of your portfolio.
+
+## Tech Stack
+
+- **Next.js 16.0.7** - React framework with webpack build system
+- **React 18.2.0** - UI library
+- **Nextra 2.13.4** - Static site generator for Next.js
+- **Node.js 22** - Runtime environment
+
+## Features
 
 - Automatically configured to handle Markdown/MDX
 - Generates an RSS feed based on your posts
 - A beautiful theme included out of the box
 - Easily categorize posts with tags
 - Fast, optimized web font loading
+
+## Prerequisites
+
+- Node.js 22 (use `nvm use` if you have nvm installed)
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+npm start
+```
 
 ## Configuration
 
