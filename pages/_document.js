@@ -10,6 +10,13 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link
+          rel="preload"
+          href="/fonts/Inter-roman.latin.var.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <meta name="robots" content="follow, index" />
         <meta name="description" content={meta.description} />
         <meta property="og:site_name" content={meta.title} />

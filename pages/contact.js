@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { Layout, LinkedInIcon, GitHubIcon, ChevronRightIcon } from '../components'
+import { siteConfig } from '../lib/config'
 
 const ContactLink = ({ href, icon: Icon, title, handle, hoverColor }) => {
   const colorClasses = {
@@ -59,17 +60,17 @@ export default function Contact() {
 
         <div className="grid gap-4 max-w-md animate-slide-up [animation-delay:200ms] opacity-0">
           <ContactLink
-            href="https://linkedin.com/in/snurmivaara/"
+            href={siteConfig.social.linkedin.url}
             icon={LinkedInIcon}
             title="LinkedIn"
-            handle="@SNurmivaara"
+            handle={siteConfig.social.linkedin.handle}
             hoverColor="blue"
           />
           <ContactLink
-            href="https://github.com/SNurmivaara"
+            href={siteConfig.social.github.url}
             icon={GitHubIcon}
             title="GitHub"
-            handle="@SNurmivaara"
+            handle={siteConfig.social.github.handle}
             hoverColor="purple"
           />
         </div>

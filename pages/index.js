@@ -1,20 +1,21 @@
 import Head from 'next/head'
 import { Layout, LinkedInIcon, GitHubIcon } from '../components'
+import { siteConfig } from '../lib/config'
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Sami Nurmivaara</title>
+        <title>{siteConfig.name}</title>
       </Head>
 
       <Layout>
         <div className="animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-white via-blue-200 to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-            Sami Nurmivaara
+            {siteConfig.name}
           </h1>
           <p className="text-xl md:text-2xl text-slate-400 mb-8 animate-slide-up [animation-delay:200ms] opacity-0">
-            Senior Software Engineer
+            {siteConfig.title}
           </p>
         </div>
 
@@ -32,7 +33,7 @@ export default function Home() {
 
         <div className="flex gap-4 animate-slide-up [animation-delay:600ms] opacity-0">
           <a
-            href="https://linkedin.com/in/snurmivaara/"
+            href={siteConfig.social.linkedin.url}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
@@ -42,7 +43,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://github.com/SNurmivaara"
+            href={siteConfig.social.github.url}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20"
