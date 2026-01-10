@@ -1,25 +1,13 @@
 # Sami Nurmivaara Portfolio
 
-This portfolio is built with **Next.js 16** and [Nextra](https://nextra.vercel.app/). It allows you to write Markdown and focus on the _content_ of your portfolio.
+Personal homepage built with **Next.js 16** and **Tailwind CSS**.
 
 ## Tech Stack
 
-- **Next.js 16.0.7** - React framework with webpack build system
-- **React 18.2.0** - UI library
-- **Nextra 2.13.4** - Static site generator for Next.js
+- **Next.js 16** - React framework
+- **React 18** - UI library
+- **Tailwind CSS 3** - Utility-first CSS
 - **Node.js 22** - Runtime environment
-
-## Features
-
-- Automatically configured to handle Markdown/MDX
-- Generates an RSS feed based on your posts
-- A beautiful theme included out of the box
-- Easily categorize posts with tags
-- Fast, optimized web font loading
-
-## Prerequisites
-
-- Node.js 22 (use `nvm use` if you have nvm installed)
 
 ## Development
 
@@ -28,6 +16,8 @@ npm install
 npm run dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
 ## Build
 
 ```bash
@@ -35,27 +25,29 @@ npm run build
 npm start
 ```
 
-## Configuration
+## Deployment
 
-1. Update your name in `theme.config.js` or change the footer.
-1. Update your name and site URL for the RSS feed in `scripts/gen-rss.js`.
-1. Update the meta tags in `pages/_document.js`.
-1. Update the posts inside `pages/posts/*.md` with your own content.
+Deployed to [Vercel](https://vercel.com) at [nurmivaara.fi](https://nurmivaara.fi).
 
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/nextjs-portfolio-starter&project-name=portfolio&repository-name=portfolio)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Push to `main` triggers automatic deployment:
 
 ```bash
-npx create-next-app --example blog my-blog
-# or
-yarn create next-app --example blog my-blog
+git add .
+git commit -m "Your changes"
+git push origin main
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Vercel will build and deploy automatically. Check deployment status in the [Vercel dashboard](https://vercel.com/dashboard).
+
+## Monitoring
+
+**Vercel (enable in dashboard):**
+- **Analytics** - Page views and visitor data
+- **Speed Insights** - Core Web Vitals performance metrics
+- **Alerts** - Email notifications for failed deployments (Settings → Notifications)
+
+**GitHub:**
+- **Dependabot** - Automatic PRs for dependency security updates (configured in `.github/dependabot.yml`)
+
+**External:**
+- **UptimeRobot** - Downtime alerts (configure at [uptimerobot.com](https://uptimerobot.com))

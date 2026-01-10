@@ -2,8 +2,8 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   const meta = {
-    title: 'Nurmivaara Consulting Oy',
-    description: 'Fullstack, Cloud and DevOps consulting',
+    title: 'Sami Nurmivaara',
+    description: 'Senior Software Engineer',
     image: '/metaimg.jpeg'
   }
 
