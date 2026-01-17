@@ -16,6 +16,14 @@ const TableOfContents = ({ visibleSections }) => {
     { id: 'languages', label: 'Languages' },
   ]
 
+  const handleClick = (e, id) => {
+    e.preventDefault()
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <nav className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-40">
       <ul className="space-y-3">
@@ -25,12 +33,13 @@ const TableOfContents = ({ visibleSections }) => {
             <li key={section.id}>
               <a
                 href={`#${section.id}`}
-                className={`flex items-center gap-3 group transition-all duration-200 ${
+                onClick={(e) => handleClick(e, section.id)}
+                className={`flex items-center gap-3 group transition-all duration-300 ${
                   isVisible ? 'text-blue-400' : 'text-slate-500 hover:text-slate-300'
                 }`}
               >
                 <span
-                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     isVisible
                       ? 'bg-blue-400 scale-125'
                       : 'bg-slate-600 group-hover:bg-slate-400'
@@ -135,18 +144,18 @@ export default function CV() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['experience', 'education', 'languages']
-      const viewportTop = window.scrollY + 150
-      const viewportBottom = window.scrollY + window.innerHeight - 100
       const visible = []
 
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId)
         if (element) {
-          const { offsetTop, offsetHeight } = element
-          const sectionBottom = offsetTop + offsetHeight
+          const rect = element.getBoundingClientRect()
+          const viewportHeight = window.innerHeight
 
-          // Section is visible if it overlaps with viewport
-          if (offsetTop < viewportBottom && sectionBottom > viewportTop) {
+          // Section is visible if any part is in viewport (with some margin)
+          const isInView = rect.top < viewportHeight - 100 && rect.bottom > 120
+
+          if (isInView) {
             visible.push(sectionId)
           }
         }
