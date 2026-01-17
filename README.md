@@ -36,15 +36,7 @@ npm run lint
 
 Deployed to [Vercel](https://vercel.com) at [nurmivaara.fi](https://nurmivaara.fi).
 
-Push to `main` triggers automatic deployment:
-
-```bash
-git add .
-git commit -m "Your changes"
-git push origin main
-```
-
-Vercel will build and deploy automatically. Check deployment status in the [Vercel dashboard](https://vercel.com/dashboard).
+Merging a PR to `main` triggers automatic deployment. Direct pushes to `main` are blocked by branch protection rules.
 
 ## Monitoring
 
