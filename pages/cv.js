@@ -1,22 +1,56 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { Layout, LinkedInIcon, ChevronRightIcon } from '../components'
 import { siteConfig } from '../lib/config'
 
 const SkillBadge = ({ children }) => (
-  <span className="px-2 py-1 bg-slate-700 text-slate-300 rounded text-xs">
+  <span className="px-2 py-1 bg-slate-700 text-slate-300 rounded text-xs hover:bg-slate-600 hover:text-slate-200 transition-colors cursor-default">
     {children}
   </span>
 )
 
+const TableOfContents = ({ activeSection }) => {
+  const sections = [
+    { id: 'experience', label: 'Experience' },
+    { id: 'education', label: 'Education' },
+    { id: 'languages', label: 'Languages' },
+  ]
+
+  return (
+    <nav className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-40">
+      <ul className="space-y-3">
+        {sections.map((section) => (
+          <li key={section.id}>
+            <a
+              href={`#${section.id}`}
+              className={`flex items-center gap-3 group transition-all duration-200 ${
+                activeSection === section.id ? 'text-blue-400' : 'text-slate-500 hover:text-slate-300'
+              }`}
+            >
+              <span
+                className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                  activeSection === section.id
+                    ? 'bg-blue-400 scale-125'
+                    : 'bg-slate-600 group-hover:bg-slate-400'
+                }`}
+              />
+              <span className="text-sm">{section.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
 const TimelineItem = ({ company, role, period, location, skills, projects, children }) => (
-  <div className="relative pl-8 pb-10 last:pb-0">
+  <div className="relative pl-8 pb-10 last:pb-0 group/item">
     {/* Timeline line */}
     <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700 last:hidden" />
     {/* Timeline dot */}
-    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900" />
+    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900 group-hover/item:border-blue-500/50 group-hover/item:bg-slate-800 transition-colors" />
 
-    <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-5">
+    <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-5 hover:bg-slate-800/50 hover:border-slate-600/50 transition-all duration-200">
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
         <h3 className="text-lg font-semibold text-white">{company}</h3>
         <span className="text-sm text-slate-500 whitespace-nowrap">{period}</span>
@@ -70,11 +104,11 @@ const TimelineItem = ({ company, role, period, location, skills, projects, child
 )
 
 const EducationItem = ({ school, degree, period }) => (
-  <div className="relative pl-8 pb-6 last:pb-0">
+  <div className="relative pl-8 pb-6 last:pb-0 group/item">
     <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700" />
-    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900" />
+    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900 group-hover/item:border-blue-500/50 group-hover/item:bg-slate-800 transition-colors" />
 
-    <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4">
+    <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4 hover:bg-slate-800/50 hover:border-slate-600/50 transition-all duration-200">
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
         <h3 className="font-semibold text-white">{school}</h3>
         <span className="text-sm text-slate-500">{period}</span>
@@ -84,8 +118,8 @@ const EducationItem = ({ school, degree, period }) => (
   </div>
 )
 
-const Section = ({ title, children }) => (
-  <section className="mb-12">
+const Section = ({ id, title, children }) => (
+  <section id={id} className="mb-12 scroll-mt-24">
     <h2 className="text-xl font-bold mb-6 text-slate-300 uppercase tracking-wider text-sm">{title}</h2>
     {children}
   </section>
@@ -93,6 +127,28 @@ const Section = ({ title, children }) => (
 
 export default function CV() {
   const [showOlderExperience, setShowOlderExperience] = useState(false)
+  const [activeSection, setActiveSection] = useState('experience')
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['experience', 'education', 'languages']
+      const scrollPosition = window.scrollY + 200
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          const { offsetTop, offsetHeight } = element
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <>
@@ -101,6 +157,8 @@ export default function CV() {
       </Head>
 
       <Layout>
+        <TableOfContents activeSection={activeSection} />
+
         <div className="animate-fade-in mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Curriculum Vitae</h1>
           <p className="text-lg text-slate-400 max-w-2xl mb-4">
@@ -132,7 +190,7 @@ export default function CV() {
         </div>
 
         <div className="animate-slide-up [animation-delay:200ms] opacity-0">
-          <Section title="Experience">
+          <Section id="experience" title="Experience">
             <TimelineItem
               company="Inven"
               role="Senior Software Engineer"
@@ -357,7 +415,7 @@ export default function CV() {
             )}
           </Section>
 
-          <Section title="Education">
+          <Section id="education" title="Education">
             <EducationItem
               school="University of Helsinki"
               degree="Master of Science (MSc), Computer Science"
@@ -375,7 +433,7 @@ export default function CV() {
             />
           </Section>
 
-          <Section title="Languages">
+          <Section id="languages" title="Languages">
             <div className="flex gap-6 text-sm pl-8">
               <div>
                 <span className="text-slate-300">Finnish</span>
