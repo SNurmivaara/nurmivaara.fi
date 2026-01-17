@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import Head from 'next/head'
-import { Layout, LinkedInIcon } from '../components'
+import { Layout, LinkedInIcon, ChevronRightIcon } from '../components'
 import { siteConfig } from '../lib/config'
 
 const SkillBadge = ({ children }) => (
@@ -91,6 +92,8 @@ const Section = ({ title, children }) => (
 )
 
 export default function CV() {
+  const [showOlderExperience, setShowOlderExperience] = useState(false)
+
   return (
     <>
       <Head>
@@ -219,68 +222,113 @@ export default function CV() {
               role="Software Developer"
               period="Nov 2017 - Apr 2019"
               location="Helsinki, Finland"
-              skills={['Full-Stack', 'Data Migrations', 'Agile']}
+              projects={[
+                {
+                  title: 'Data Migration Specialist',
+                  client: 'A-lehdet',
+                  clientDesc: 'Finnish magazine publisher',
+                  description:
+                    'Migrated data from multiple old WordPress and Drupal deployments to Contentful. Data extraction, cleaning, reformatting and uploading.',
+                  skills: ['Ruby', 'WordPress', 'Drupal', 'Contentful'],
+                },
+                {
+                  title: 'WordPress Admin',
+                  client: 'PwC',
+                  clientDesc: 'Global professional services firm',
+                  description: 'Maintained PwC Uutishuone, the Finnish news blog.',
+                  skills: ['WordPress'],
+                },
+                {
+                  title: 'Frontend Developer',
+                  client: 'Solinor',
+                  description:
+                    'Brand renewal site. Frontend development for the new company website before Gofore acquisition.',
+                  skills: ['JavaScript', 'TypeScript', 'React', 'SCSS', 'Bootstrap'],
+                },
+                {
+                  title: 'Student Recruitment',
+                  description:
+                    'Hosted hackathons and company excursions. Company representation at events and annual balls.',
+                },
+              ]}
             >
-              Full-stack web development, data management and project work in self-organizing agile
-              teams. Gofore acquired Solinor in 2018.
+              Full-stack web development and project work in self-organizing agile teams. Gofore
+              acquired Solinor in 2018.
             </TimelineItem>
 
-            <TimelineItem
-              company="Iriba Oy"
-              role="Software Specialist"
-              period="Aug 2017 - Nov 2017"
-              location="Helsinki, Finland"
-            >
-              Software development and testing as an IT consultant.
-            </TimelineItem>
+            {/* Older experience toggle */}
+            {!showOlderExperience ? (
+              <div className="relative pl-8 pb-10">
+                <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700" />
+                <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900" />
+                <button
+                  onClick={() => setShowOlderExperience(true)}
+                  className="flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors text-sm group"
+                >
+                  <ChevronRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  <span>Show earlier experience (2013-2017)</span>
+                </button>
+              </div>
+            ) : (
+              <>
+                <TimelineItem
+                  company="Iriba Oy"
+                  role="Software Specialist"
+                  period="Aug 2017 - Nov 2017"
+                  location="Helsinki, Finland"
+                >
+                  Software development and testing as an IT consultant.
+                </TimelineItem>
 
-            <TimelineItem
-              company="Fairspectrum"
-              role="Part-time Developer"
-              period="Sep 2016 - Dec 2016"
-              location="Helsinki, Finland"
-            >
-              Software development, server monitoring and system administration.
-            </TimelineItem>
+                <TimelineItem
+                  company="Fairspectrum"
+                  role="Part-time Developer"
+                  period="Sep 2016 - Dec 2016"
+                  location="Helsinki, Finland"
+                >
+                  Software development, server monitoring and system administration.
+                </TimelineItem>
 
-            <TimelineItem
-              company="Laehtis Oy"
-              role="Co-Founder"
-              period="Dec 2015 - Dec 2017"
-              location="Finland"
-            >
-              Co-founded a mobile device repair business during military service. Did repairs and
-              shared management duties with co-founders.
-            </TimelineItem>
+                <TimelineItem
+                  company="Laehtis Oy"
+                  role="Co-Founder"
+                  period="Dec 2015 - Dec 2017"
+                  location="Finland"
+                >
+                  Co-founded a mobile device repair business during military service. Did repairs and
+                  shared management duties with co-founders.
+                </TimelineItem>
 
-            <TimelineItem
-              company="Finnish Defence Forces"
-              role="Conscript"
-              period="Jun 2015 - Jun 2016"
-              location="Finland"
-            >
-              12-month mandatory service. Finished as NCO, currently Staff Sergeant in the reserve.
-            </TimelineItem>
+                <TimelineItem
+                  company="Finnish Defence Forces"
+                  role="Conscript"
+                  period="Jun 2015 - Jun 2016"
+                  location="Finland"
+                >
+                  12-month mandatory service. Finished as NCO, currently Staff Sergeant in the reserve.
+                </TimelineItem>
 
-            <TimelineItem
-              company="OP Financial Group"
-              role="ICT User Management Administrator"
-              period="May 2014 - May 2015"
-              location="Finland"
-              skills={['SAP', 'JIRA', 'Active Directory', 'VDI']}
-            >
-              Managed access rights and VDI infrastructure across multiple domains and systems.
-            </TimelineItem>
+                <TimelineItem
+                  company="OP Financial Group"
+                  role="ICT User Management Administrator"
+                  period="May 2014 - May 2015"
+                  location="Finland"
+                  skills={['SAP', 'JIRA', 'Active Directory', 'VDI']}
+                >
+                  Managed access rights and VDI infrastructure across multiple domains and systems.
+                </TimelineItem>
 
-            <TimelineItem
-              company="Atos"
-              role="Onsite Technician"
-              period="Nov 2013 - Jan 2014"
-              location="Finland"
-            >
-              Technical support and device repairs. Laptop assessment/sales, IP phone installation
-              and hardware registry work.
-            </TimelineItem>
+                <TimelineItem
+                  company="Atos"
+                  role="Onsite Technician"
+                  period="Nov 2013 - Jan 2014"
+                  location="Finland"
+                >
+                  Technical support and device repairs. Laptop assessment/sales, IP phone installation
+                  and hardware registry work.
+                </TimelineItem>
+              </>
+            )}
           </Section>
 
           <Section title="Education">
