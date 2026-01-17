@@ -8,16 +8,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev    # Development server at localhost:3000
 npm run build  # Production build
 npm start      # Production server
+npm run lint   # Run ESLint
 ```
 
 ## Architecture
 
-Minimal personal homepage built with **Next.js 16 + Tailwind CSS**.
+Minimal personal homepage built with **Next.js 16 + TypeScript + Tailwind CSS 4**.
 
 ### Pages
 
-- [pages/index.js](pages/index.js) - Home/About page with hero section
-- [pages/contact.js](pages/contact.js) - Contact page with social links
+- [pages/index.tsx](pages/index.tsx) - Home/About page with hero section
+- [pages/cv.tsx](pages/cv.tsx) - CV/Resume page with experience timeline
 
 ### Components
 
@@ -29,19 +30,22 @@ Shared components in `components/`:
 
 ### Styling
 
-- Tailwind CSS with custom animations defined in [tailwind.config.js](tailwind.config.js)
+- Tailwind CSS 4 with custom animations defined in [styles/globals.css](styles/globals.css)
 - Inter font loaded from `/public/fonts/`
 - Dark slate color scheme with gradient backgrounds
 
 ### Key Files
 
-- [pages/_app.js](pages/_app.js) - Global styles + Vercel Analytics/Speed Insights
-- [pages/_document.js](pages/_document.js) - Meta tags for SEO/social sharing
+- [pages/_app.tsx](pages/_app.tsx) - Global styles + Vercel Analytics/Speed Insights
+- [pages/_document.tsx](pages/_document.tsx) - Meta tags for SEO/social sharing
 - [styles/globals.css](styles/globals.css) - Tailwind imports + font definitions
+- [lib/config.ts](lib/config.ts) - Site configuration (name, social links)
 
 ## Code Style
 
-Uses Prettier: single quotes, no semicolons, 2-space tabs.
+- TypeScript with strict mode
+- ESLint with Next.js and TypeScript rules
+- Prettier: single quotes, no semicolons, 2-space tabs
 
 ## Deployment
 

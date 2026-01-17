@@ -36,6 +36,7 @@ export default function Home() {
             href={siteConfig.social.linkedin.url}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View LinkedIn profile"
             className="group flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
           >
             <LinkedInIcon className="w-5 h-5 group-hover:text-blue-400 transition-colors" />
@@ -46,6 +47,7 @@ export default function Home() {
             href={siteConfig.social.github.url}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View GitHub profile"
             className="group flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20"
           >
             <GitHubIcon className="w-5 h-5 group-hover:text-purple-400 transition-colors" />

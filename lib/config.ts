@@ -1,4 +1,19 @@
-export const siteConfig = {
+interface SocialLink {
+  url: string
+  handle: string
+}
+
+interface SiteConfig {
+  name: string
+  title: string
+  description: string
+  social: {
+    linkedin: SocialLink
+    github: SocialLink
+  }
+}
+
+export const siteConfig: SiteConfig = {
   name: 'Sami Nurmivaara',
   title: 'Senior Software Engineer',
   description: 'Senior Software Engineer',
