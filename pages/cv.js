@@ -3,7 +3,7 @@ import { Layout, LinkedInIcon } from '../components'
 import { siteConfig } from '../lib/config'
 
 const SkillBadge = ({ children }) => (
-  <span className="px-2 py-1 bg-slate-800/80 text-slate-400 rounded text-xs">
+  <span className="px-2 py-1 bg-slate-700 text-slate-300 rounded text-xs">
     {children}
   </span>
 )
@@ -26,13 +26,16 @@ const TimelineItem = ({ company, role, period, location, skills, projects, child
       {children && <div className="text-slate-400 text-sm leading-relaxed mb-3">{children}</div>}
 
       {projects && (
-        <div className="space-y-4 mb-3">
+        <div className="space-y-3 mb-3">
           {projects.map((project, i) => (
             <div key={i} className="bg-slate-800/50 border border-slate-700/30 rounded-md p-4">
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
-                <p className="font-medium text-slate-300 text-sm">{project.title}</p>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-[10px] uppercase tracking-wider text-slate-500 bg-slate-700/50 px-1.5 py-0.5 rounded">
+                  Project
+                </span>
                 {project.period && <span className="text-xs text-slate-500">{project.period}</span>}
               </div>
+              <p className="font-medium text-slate-300 text-sm mb-1">{project.title}</p>
               <p className="text-slate-400 text-sm leading-relaxed">{project.description}</p>
               {project.skills && (
                 <div className="flex flex-wrap gap-1.5 mt-3">
@@ -91,7 +94,7 @@ export default function CV() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Curriculum Vitae</h1>
           <p className="text-lg text-slate-400 max-w-2xl mb-4">
             Senior Software Engineer with a Master's in Computer Science. Generalist focused on
-            full stack development, DevOps, and cloud architecture.
+            full stack development, DevOps and cloud architecture.
           </p>
 
           <div className="flex flex-wrap gap-2 mb-4">
@@ -136,13 +139,12 @@ export default function CV() {
                   title: 'Senior DevOps Engineer @ Leading Finnish Financial Group',
                   period: 'May 2023 - Dec 2025',
                   description:
-                    'Worked in a centralized Platform engineering team, managing and supporting DevOps/Platform needs across the organization.',
+                    'Platform engineering team. Managed and supported DevOps/Platform needs across the organization.',
                   skills: ['OpenShift', 'Kubernetes', 'Dynatrace', 'AWS', 'Azure', 'Terraform'],
                 },
               ]}
             >
-              Founded and operated an IT consulting company. As of 2026, transitioned to an asset
-              holding company following full-time employment at Inven.
+              IT consulting company. Now mainly an asset holding company after starting at Inven.
             </TimelineItem>
 
             <TimelineItem
@@ -152,8 +154,8 @@ export default function CV() {
               location="Helsinki, Finland"
               skills={['Docker', 'Node.js', 'React', 'PostgreSQL', 'Redis', 'GitHub Actions']}
             >
-              Contract work as part of the Toska research group. Developed and maintained Oodikone,
-              a data-analysis platform for Finnish student data.
+              Part of the Toska research group. Built and maintained Oodikone, a data analysis
+              platform for Finnish student data.
             </TimelineItem>
 
             <TimelineItem
@@ -162,8 +164,8 @@ export default function CV() {
               period="May 2021 - Sep 2021"
               location="Espoo, Finland"
             >
-              Developed HR-based wellbeing software. Left during probation to pursue Master's thesis
-              opportunity at University of Helsinki.
+              HR wellbeing software development. Left to do Master's thesis at University of
+              Helsinki.
             </TimelineItem>
 
             <TimelineItem
@@ -175,25 +177,25 @@ export default function CV() {
                 {
                   title: 'Aviation Data Platform',
                   description:
-                    'Helped create a large scale data platform for managing flight data with high integrity DevOps workflow.',
+                    'Large scale data platform for flight data with high integrity DevOps workflow.',
                   skills: ['AWS', 'Serverless', 'TypeScript', 'Aurora PostgreSQL', 'Java'],
                 },
                 {
-                  title: 'Financial Services Projects',
+                  title: 'Financial Services',
                   description:
-                    'Fullstack dev + release engineer on multiple projects. Managed release trains in a highly regulated industry.',
+                    'Fullstack dev and release engineer on multiple projects. Managed release trains in a regulated industry.',
                   skills: ['AWS', 'DynamoDB', 'S3', 'Java', 'JavaScript', 'SAML'],
                 },
                 {
                   title: 'Media Streaming Service',
                   description:
-                    'Development and maintenance for streaming and metadata retrieval at a major Finnish media company.',
+                    'Streaming and metadata retrieval for a major Finnish media company.',
                   skills: ['AWS', 'TypeScript', 'Jenkins', 'Coremedia'],
                 },
               ]}
             >
-              Consultant working on lean-agile, AWS, DevOps and backend development. Also involved in
-              student co-operation, recruitment, and internal culture development.
+              Consultant focused on AWS, DevOps and backend development. Also did student outreach
+              and recruitment.
             </TimelineItem>
 
             <TimelineItem
@@ -203,8 +205,8 @@ export default function CV() {
               location="Helsinki, Finland"
               skills={['Full-Stack', 'Data Migrations', 'Agile']}
             >
-              Full-stack web development, data management, and project management in self-organizing
-              agile teams. Gofore acquired Solinor in 2018.
+              Full-stack web development, data management and project work in self-organizing agile
+              teams. Gofore acquired Solinor in 2018.
             </TimelineItem>
 
             <TimelineItem
@@ -222,7 +224,7 @@ export default function CV() {
               period="Sep 2016 - Dec 2016"
               location="Helsinki, Finland"
             >
-              Software development, server system monitoring, administration and maintenance.
+              Software development, server monitoring and system administration.
             </TimelineItem>
 
             <TimelineItem
@@ -231,8 +233,8 @@ export default function CV() {
               period="Dec 2015 - Dec 2017"
               location="Finland"
             >
-              Co-founded a mobile device repair business during military service. Handled device
-              repairs and shared management responsibilities.
+              Co-founded a mobile device repair business during military service. Did repairs and
+              shared management duties with co-founders.
             </TimelineItem>
 
             <TimelineItem
@@ -241,8 +243,7 @@ export default function CV() {
               period="Jun 2015 - Jun 2016"
               location="Finland"
             >
-              Completed 12-month mandatory conscription. Finished as NCO, currently ranked Staff
-              Sergeant in the reserve.
+              12-month mandatory service. Finished as NCO, currently Staff Sergeant in the reserve.
             </TimelineItem>
 
             <TimelineItem
@@ -261,8 +262,8 @@ export default function CV() {
               period="Nov 2013 - Jan 2014"
               location="Finland"
             >
-              Technical support and device repairs. Handled laptop assessment and sales, IP phone
-              installation, and hardware registry management.
+              Technical support and device repairs. Laptop assessment/sales, IP phone installation
+              and hardware registry work.
             </TimelineItem>
           </Section>
 
