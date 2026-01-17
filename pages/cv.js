@@ -30,9 +30,12 @@ const TimelineItem = ({ company, role, period, location, skills, projects, child
           {projects.map((project, i) => (
             <div key={i} className="bg-slate-800/50 border border-slate-700/30 rounded-md p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-[10px] uppercase tracking-wider text-slate-500 bg-slate-700/50 px-1.5 py-0.5 rounded">
+                <span className="text-[10px] uppercase tracking-wider text-slate-300 bg-slate-600 px-1.5 py-0.5 rounded">
                   Project
                 </span>
+                {project.client && (
+                  <span className="text-xs text-slate-400">@ {project.client}</span>
+                )}
                 {project.period && <span className="text-xs text-slate-500">{project.period}</span>}
               </div>
               <p className="font-medium text-slate-300 text-sm mb-1">{project.title}</p>
@@ -136,7 +139,8 @@ export default function CV() {
               location="Helsinki, Finland"
               projects={[
                 {
-                  title: 'Senior DevOps Engineer @ Leading Finnish Financial Group',
+                  title: 'Senior DevOps Engineer',
+                  client: 'Mandatum',
                   period: 'May 2023 - Dec 2025',
                   description:
                     'Platform engineering team. Managed and supported DevOps/Platform needs across the organization.',
@@ -176,20 +180,23 @@ export default function CV() {
               projects={[
                 {
                   title: 'Aviation Data Platform',
+                  client: 'Finnair',
                   description:
                     'Large scale data platform for flight data with high integrity DevOps workflow.',
                   skills: ['AWS', 'Serverless', 'TypeScript', 'Aurora PostgreSQL', 'Java'],
                 },
                 {
                   title: 'Financial Services',
+                  client: 'OP',
                   description:
                     'Fullstack dev and release engineer on multiple projects. Managed release trains in a regulated industry.',
                   skills: ['AWS', 'DynamoDB', 'S3', 'Java', 'JavaScript', 'SAML'],
                 },
                 {
                   title: 'Media Streaming Service',
+                  client: 'MTV',
                   description:
-                    'Streaming and metadata retrieval for a major Finnish media company.',
+                    'Streaming and metadata retrieval.',
                   skills: ['AWS', 'TypeScript', 'Jenkins', 'Coremedia'],
                 },
               ]}
