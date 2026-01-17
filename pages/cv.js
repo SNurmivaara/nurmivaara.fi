@@ -132,7 +132,7 @@ const EducationItem = ({ school, degree, period }) => (
 
 const Section = ({ id, title, children }) => (
   <section id={id} className="mb-12 scroll-mt-24">
-    <h2 className="text-xl font-bold mb-6 text-slate-300 uppercase tracking-wider text-sm">{title}</h2>
+    <h2 className="text-sm font-bold mb-6 text-slate-300 uppercase tracking-wider">{title}</h2>
     {children}
   </section>
 )
@@ -355,6 +355,7 @@ export default function CV() {
                 <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900" />
                 <button
                   onClick={() => setShowOlderExperience(true)}
+                  aria-expanded="false"
                   className="flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors text-sm group"
                 >
                   <ChevronRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -367,6 +368,7 @@ export default function CV() {
                   <div className="absolute left-[7px] top-0 bottom-0 w-px bg-slate-700" />
                   <button
                     onClick={() => setShowOlderExperience(false)}
+                    aria-expanded="true"
                     className="flex items-center gap-2 text-slate-500 hover:text-slate-300 transition-colors text-xs"
                   >
                     <ChevronRightIcon className="w-3 h-3 rotate-90" />
