@@ -155,7 +155,7 @@ export default function CV() {
 
             <TimelineItem
               company="Nurmivaara Consulting Oy"
-              role="Managing Partner"
+              role="Founder & Owner"
               period="Mar 2023 - Present"
               location="Helsinki, Finland"
               projects={[
@@ -170,7 +170,8 @@ export default function CV() {
                 },
               ]}
             >
-              IT consulting company. Now mainly an asset holding company after starting at Inven.
+              Founded and sole owner. IT consulting until 2026, now an investment holding company
+              managing a six-figure portfolio.
             </TimelineItem>
 
             <TimelineItem
