@@ -22,8 +22,8 @@ export const Nav = () => {
           <Link href="/" className={linkClass('/')}>
             About
           </Link>
-          <Link href="/contact" className={linkClass('/contact')}>
-            Contact
+          <Link href="/cv" className={linkClass('/cv')}>
+            CV
           </Link>
         </div>
       </div>

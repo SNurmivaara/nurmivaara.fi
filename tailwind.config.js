@@ -10,6 +10,7 @@ module.exports = {
       animation: {
         'fade-in': 'fadeIn 0.8s ease-out forwards',
         'slide-up': 'slideUp 0.8s ease-out forwards',
+        'slide-down': 'slideDown 0.4s ease-out forwards',
         'gradient': 'gradient 8s ease infinite'
       },
       keyframes: {
@@ -19,6 +20,10 @@ module.exports = {
         },
         slideUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
+        slideDown: {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' }
         },
         gradient: {
