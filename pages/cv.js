@@ -33,12 +33,17 @@ const TimelineItem = ({ company, role, period, location, skills, projects, child
                 <span className="text-[10px] uppercase tracking-wider text-slate-300 bg-slate-600 px-1.5 py-0.5 rounded">
                   Project
                 </span>
-                {project.client && (
-                  <span className="text-xs text-slate-400">@ {project.client}</span>
-                )}
                 {project.period && <span className="text-xs text-slate-500">{project.period}</span>}
               </div>
-              <p className="font-medium text-slate-300 text-sm mb-1">{project.title}</p>
+              <p className="font-medium text-slate-300 text-sm">
+                {project.title}
+                {project.client && (
+                  <span className="text-slate-400 font-normal"> @ {project.client}</span>
+                )}
+              </p>
+              {project.clientDesc && (
+                <p className="text-xs text-slate-500 mb-1">{project.clientDesc}</p>
+              )}
               <p className="text-slate-400 text-sm leading-relaxed">{project.description}</p>
               {project.skills && (
                 <div className="flex flex-wrap gap-1.5 mt-3">
@@ -141,6 +146,7 @@ export default function CV() {
                 {
                   title: 'Senior DevOps Engineer',
                   client: 'Mandatum',
+                  clientDesc: 'Finnish life insurance and wealth management company',
                   period: 'May 2023 - Dec 2025',
                   description:
                     'Platform engineering team. Managed and supported DevOps/Platform needs across the organization.',
@@ -179,24 +185,27 @@ export default function CV() {
               location="Helsinki, Finland"
               projects={[
                 {
-                  title: 'Aviation Data Platform',
+                  title: 'Cloud Full Stack Engineer',
                   client: 'Finnair',
+                  clientDesc: 'Finnish national airline',
                   description:
                     'Large scale data platform for flight data with high integrity DevOps workflow.',
                   skills: ['AWS', 'Serverless', 'TypeScript', 'Aurora PostgreSQL', 'Java'],
                 },
                 {
-                  title: 'Financial Services',
+                  title: 'Full Stack Engineer & Release Manager',
                   client: 'OP',
+                  clientDesc: 'Largest financial services group in Finland',
                   description:
-                    'Fullstack dev and release engineer on multiple projects. Managed release trains in a regulated industry.',
+                    'Multiple projects. Managed release trains in a regulated industry.',
                   skills: ['AWS', 'DynamoDB', 'S3', 'Java', 'JavaScript', 'SAML'],
                 },
                 {
-                  title: 'Media Streaming Service',
+                  title: 'Full Stack Engineer',
                   client: 'MTV',
+                  clientDesc: 'Finnish commercial broadcaster',
                   description:
-                    'Streaming and metadata retrieval.',
+                    'Streaming platform and metadata retrieval.',
                   skills: ['AWS', 'TypeScript', 'Jenkins', 'Coremedia'],
                 },
               ]}
