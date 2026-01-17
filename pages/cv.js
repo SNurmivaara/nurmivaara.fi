@@ -2,39 +2,81 @@ import Head from 'next/head'
 import { Layout, LinkedInIcon } from '../components'
 import { siteConfig } from '../lib/config'
 
-const Section = ({ title, children }) => (
-  <section className="mb-12">
-    <h2 className="text-2xl font-bold mb-6 text-slate-200">{title}</h2>
+const SkillBadge = ({ children }) => (
+  <span className="px-2 py-1 bg-slate-800/80 text-slate-400 rounded text-xs">
     {children}
-  </section>
+  </span>
 )
 
-const ExperienceItem = ({ company, role, period, location, children }) => (
-  <div className="mb-8 last:mb-0">
-    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
-      <h3 className="text-lg font-semibold text-white">{company}</h3>
-      <span className="text-sm text-slate-500">{period}</span>
+const TimelineItem = ({ company, role, period, location, skills, projects, children }) => (
+  <div className="relative pl-8 pb-10 last:pb-0">
+    {/* Timeline line */}
+    <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700 last:hidden" />
+    {/* Timeline dot */}
+    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900" />
+
+    <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-5">
+      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
+        <h3 className="text-lg font-semibold text-white">{company}</h3>
+        <span className="text-sm text-slate-500 whitespace-nowrap">{period}</span>
+      </div>
+      <p className="text-blue-400 text-sm mb-1">{role}</p>
+      {location && <p className="text-xs text-slate-500 mb-3">{location}</p>}
+
+      {children && <div className="text-slate-400 text-sm leading-relaxed mb-3">{children}</div>}
+
+      {projects && (
+        <div className="space-y-4 mb-3">
+          {projects.map((project, i) => (
+            <div key={i} className="bg-slate-800/50 border border-slate-700/30 rounded-md p-4">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+                <p className="font-medium text-slate-300 text-sm">{project.title}</p>
+                {project.period && <span className="text-xs text-slate-500">{project.period}</span>}
+              </div>
+              <p className="text-slate-400 text-sm leading-relaxed">{project.description}</p>
+              {project.skills && (
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {project.skills.map((skill) => (
+                    <SkillBadge key={skill}>{skill}</SkillBadge>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {skills && (
+        <div className="flex flex-wrap gap-1.5">
+          {skills.map((skill) => (
+            <SkillBadge key={skill}>{skill}</SkillBadge>
+          ))}
+        </div>
+      )}
     </div>
-    <p className="text-blue-400 mb-1">{role}</p>
-    {location && <p className="text-sm text-slate-500 mb-3">{location}</p>}
-    {children && <div className="text-slate-400 text-sm leading-relaxed">{children}</div>}
   </div>
 )
 
 const EducationItem = ({ school, degree, period }) => (
-  <div className="mb-4 last:mb-0">
-    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-      <h3 className="text-lg font-semibold text-white">{school}</h3>
-      <span className="text-sm text-slate-500">{period}</span>
+  <div className="relative pl-8 pb-6 last:pb-0">
+    <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700" />
+    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900" />
+
+    <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4">
+      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+        <h3 className="font-semibold text-white">{school}</h3>
+        <span className="text-sm text-slate-500">{period}</span>
+      </div>
+      <p className="text-slate-400 text-sm">{degree}</p>
     </div>
-    <p className="text-slate-400">{degree}</p>
   </div>
 )
 
-const SkillBadge = ({ children }) => (
-  <span className="px-3 py-1 bg-slate-800 text-slate-300 rounded-full text-sm">
+const Section = ({ title, children }) => (
+  <section className="mb-12">
+    <h2 className="text-xl font-bold mb-6 text-slate-300 uppercase tracking-wider text-sm">{title}</h2>
     {children}
-  </span>
+  </section>
 )
 
 export default function CV() {
@@ -45,128 +87,183 @@ export default function CV() {
       </Head>
 
       <Layout>
-        <div className="animate-fade-in mb-12">
+        <div className="animate-fade-in mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Curriculum Vitae</h1>
-          <p className="text-lg text-slate-400 max-w-2xl">
+          <p className="text-lg text-slate-400 max-w-2xl mb-4">
             Senior Software Engineer with a Master's in Computer Science. Generalist focused on
             full stack development, DevOps, and cloud architecture.
           </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            <span className="px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-md text-sm">
+              Full-Stack Development
+            </span>
+            <span className="px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-md text-sm">
+              Solution Architecture
+            </span>
+            <span className="px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-md text-sm">
+              DevOps
+            </span>
+          </div>
+
           <a
             href={siteConfig.social.linkedin.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-4 text-blue-400 hover:text-blue-300 transition-colors"
+            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm"
           >
             <LinkedInIcon className="w-4 h-4" />
-            <span>View on LinkedIn</span>
+            <span>View full profile on LinkedIn</span>
           </a>
         </div>
 
         <div className="animate-slide-up [animation-delay:200ms] opacity-0">
           <Section title="Experience">
-            <ExperienceItem
+            <TimelineItem
               company="Inven"
               role="Senior Software Engineer"
               period="Jan 2026 - Present"
               location="Helsinki, Finland"
             />
 
-            <ExperienceItem
+            <TimelineItem
               company="Nurmivaara Consulting Oy"
               role="Managing Partner"
               period="Mar 2023 - Present"
               location="Helsinki, Finland"
+              projects={[
+                {
+                  title: 'Senior DevOps Engineer @ Leading Finnish Financial Group',
+                  period: 'May 2023 - Dec 2025',
+                  description:
+                    'Worked in a centralized Platform engineering team, managing and supporting DevOps/Platform needs across the organization.',
+                  skills: ['OpenShift', 'Kubernetes', 'Dynatrace', 'AWS', 'Azure', 'Terraform'],
+                },
+              ]}
             >
-              <p className="mb-3">
-                Founded and operated an IT consulting company. As of 2026, transitioned to
-                an asset holding company following full-time employment at Inven.
-              </p>
-              <p className="font-medium text-slate-300 mb-2">Key Project:</p>
-              <p className="mb-2">
-                <strong className="text-slate-300">Senior DevOps Engineer</strong> at a leading Finnish financial group (May 2023 - Dec 2025)
-              </p>
-              <p>
-                Worked in a centralized Platform engineering team, managing and supporting DevOps/Platform
-                needs across the organization. Tech stack: OpenShift (Kubernetes), Dynatrace, AWS, Azure, Terraform.
-              </p>
-            </ExperienceItem>
+              Founded and operated an IT consulting company. As of 2026, transitioned to an asset
+              holding company following full-time employment at Inven.
+            </TimelineItem>
 
-            <ExperienceItem
+            <TimelineItem
               company="University of Helsinki"
               role="Graduate Research Assistant"
               period="Jan 2022 - Jul 2022"
               location="Helsinki, Finland"
+              skills={['Docker', 'Node.js', 'React', 'PostgreSQL', 'Redis', 'GitHub Actions']}
             >
-              <p>
-                Contract work as part of the Toska research group. Developed and maintained Oodikone,
-                a data-analysis platform for Finnish student data. Stack: Docker, Node.js, React,
-                PostgreSQL, Redis, GitHub Actions.
-              </p>
-            </ExperienceItem>
+              Contract work as part of the Toska research group. Developed and maintained Oodikone,
+              a data-analysis platform for Finnish student data.
+            </TimelineItem>
 
-            <ExperienceItem
+            <TimelineItem
               company="Firstbeat Technologies"
               role="Senior SW Developer"
               period="May 2021 - Sep 2021"
               location="Espoo, Finland"
             >
-              <p>
-                Developed HR-based wellbeing software. Left during probation to pursue Master's thesis
-                opportunity at University of Helsinki.
-              </p>
-            </ExperienceItem>
+              Developed HR-based wellbeing software. Left during probation to pursue Master's thesis
+              opportunity at University of Helsinki.
+            </TimelineItem>
 
-            <ExperienceItem
+            <TimelineItem
               company="Nitor"
               role="Software Developer"
               period="May 2019 - May 2021"
               location="Helsinki, Finland"
+              projects={[
+                {
+                  title: 'Aviation Data Platform',
+                  description:
+                    'Helped create a large scale data platform for managing flight data with high integrity DevOps workflow.',
+                  skills: ['AWS', 'Serverless', 'TypeScript', 'Aurora PostgreSQL', 'Java'],
+                },
+                {
+                  title: 'Financial Services Projects',
+                  description:
+                    'Fullstack dev + release engineer on multiple projects. Managed release trains in a highly regulated industry.',
+                  skills: ['AWS', 'DynamoDB', 'S3', 'Java', 'JavaScript', 'SAML'],
+                },
+                {
+                  title: 'Media Streaming Service',
+                  description:
+                    'Development and maintenance for streaming and metadata retrieval at a major Finnish media company.',
+                  skills: ['AWS', 'TypeScript', 'Jenkins', 'Coremedia'],
+                },
+              ]}
             >
-              <p className="mb-2">
-                Consultant working on AWS, DevOps, and backend development across multiple projects:
-              </p>
-              <ul className="list-disc list-inside space-y-1">
-                <li>Aviation data platform on AWS + Serverless (TypeScript, Aurora PostgreSQL, Java)</li>
-                <li>Financial company projects as fullstack dev + release engineer (AWS, DynamoDB, Java)</li>
-                <li>Media streaming service development (AWS, TypeScript, Jenkins)</li>
-              </ul>
-            </ExperienceItem>
+              Consultant working on lean-agile, AWS, DevOps and backend development. Also involved in
+              student co-operation, recruitment, and internal culture development.
+            </TimelineItem>
 
-            <ExperienceItem
+            <TimelineItem
               company="Gofore / Solinor"
               role="Software Developer"
               period="Nov 2017 - Apr 2019"
               location="Helsinki, Finland"
+              skills={['Full-Stack', 'Data Migrations', 'Agile']}
             >
-              <p>
-                Full-stack web development, data management, and project management in self-organizing
-                agile teams. Gofore acquired Solinor in 2018.
-              </p>
-            </ExperienceItem>
+              Full-stack web development, data management, and project management in self-organizing
+              agile teams. Gofore acquired Solinor in 2018.
+            </TimelineItem>
 
-            <ExperienceItem
+            <TimelineItem
+              company="Iriba Oy"
+              role="Software Specialist"
+              period="Aug 2017 - Nov 2017"
+              location="Helsinki, Finland"
+            >
+              Software development and testing as an IT consultant.
+            </TimelineItem>
+
+            <TimelineItem
+              company="Fairspectrum"
+              role="Part-time Developer"
+              period="Sep 2016 - Dec 2016"
+              location="Helsinki, Finland"
+            >
+              Software development, server system monitoring, administration and maintenance.
+            </TimelineItem>
+
+            <TimelineItem
               company="Laehtis Oy"
               role="Co-Founder"
               period="Dec 2015 - Dec 2017"
               location="Finland"
             >
-              <p>
-                Co-founded a mobile device repair business during military service.
-                Handled device repairs and shared management responsibilities.
-              </p>
-            </ExperienceItem>
+              Co-founded a mobile device repair business during military service. Handled device
+              repairs and shared management responsibilities.
+            </TimelineItem>
 
-            <ExperienceItem
+            <TimelineItem
+              company="Finnish Defence Forces"
+              role="Conscript"
+              period="Jun 2015 - Jun 2016"
+              location="Finland"
+            >
+              Completed 12-month mandatory conscription. Finished as NCO, currently ranked Staff
+              Sergeant in the reserve.
+            </TimelineItem>
+
+            <TimelineItem
               company="OP Financial Group"
               role="ICT User Management Administrator"
               period="May 2014 - May 2015"
               location="Finland"
+              skills={['SAP', 'JIRA', 'Active Directory', 'VDI']}
             >
-              <p>
-                Managed access rights and VDI infrastructure. Worked with SAP, JIRA, Active Directory,
-                and multiple domain systems.
-              </p>
-            </ExperienceItem>
+              Managed access rights and VDI infrastructure across multiple domains and systems.
+            </TimelineItem>
+
+            <TimelineItem
+              company="Atos"
+              role="Onsite Technician"
+              period="Nov 2013 - Jan 2014"
+              location="Finland"
+            >
+              Technical support and device repairs. Handled laptop assessment and sales, IP phone
+              installation, and hardware registry management.
+            </TimelineItem>
           </Section>
 
           <Section title="Education">
@@ -187,28 +284,8 @@ export default function CV() {
             />
           </Section>
 
-          <Section title="Skills">
-            <div className="flex flex-wrap gap-2">
-              <SkillBadge>Full-Stack Development</SkillBadge>
-              <SkillBadge>Solution Architecture</SkillBadge>
-              <SkillBadge>DevOps</SkillBadge>
-              <SkillBadge>AWS</SkillBadge>
-              <SkillBadge>Azure</SkillBadge>
-              <SkillBadge>Kubernetes / OpenShift</SkillBadge>
-              <SkillBadge>Terraform</SkillBadge>
-              <SkillBadge>TypeScript / JavaScript</SkillBadge>
-              <SkillBadge>Go</SkillBadge>
-              <SkillBadge>Ruby</SkillBadge>
-              <SkillBadge>Java</SkillBadge>
-              <SkillBadge>PostgreSQL</SkillBadge>
-              <SkillBadge>Docker</SkillBadge>
-              <SkillBadge>React</SkillBadge>
-              <SkillBadge>Node.js</SkillBadge>
-            </div>
-          </Section>
-
           <Section title="Languages">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm">
+            <div className="flex gap-6 text-sm pl-8">
               <div>
                 <span className="text-slate-300">Finnish</span>
                 <span className="text-slate-500 ml-2">Native</span>
@@ -217,27 +294,7 @@ export default function CV() {
                 <span className="text-slate-300">English</span>
                 <span className="text-slate-500 ml-2">Professional</span>
               </div>
-              <div>
-                <span className="text-slate-300">Swedish</span>
-                <span className="text-slate-500 ml-2">Elementary</span>
-              </div>
-              <div>
-                <span className="text-slate-300">Russian</span>
-                <span className="text-slate-500 ml-2">Elementary</span>
-              </div>
-              <div>
-                <span className="text-slate-300">French</span>
-                <span className="text-slate-500 ml-2">Elementary</span>
-              </div>
             </div>
-          </Section>
-
-          <Section title="Awards">
-            <ul className="space-y-2 text-slate-400">
-              <li>Taitaja 2015 Silver Medal - IT / Software Applications</li>
-              <li>Taitaja Competition Semifinalist (multiple years)</li>
-              <li>Hackathon Winner</li>
-            </ul>
           </Section>
         </div>
       </Layout>
