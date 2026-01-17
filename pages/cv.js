@@ -9,7 +9,7 @@ const SkillBadge = ({ children }) => (
   </span>
 )
 
-const TableOfContents = ({ activeSection }) => {
+const TableOfContents = ({ visibleSections }) => {
   const sections = [
     { id: 'experience', label: 'Experience' },
     { id: 'education', label: 'Education' },
@@ -19,25 +19,28 @@ const TableOfContents = ({ activeSection }) => {
   return (
     <nav className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-40">
       <ul className="space-y-3">
-        {sections.map((section) => (
-          <li key={section.id}>
-            <a
-              href={`#${section.id}`}
-              className={`flex items-center gap-3 group transition-all duration-200 ${
-                activeSection === section.id ? 'text-blue-400' : 'text-slate-500 hover:text-slate-300'
-              }`}
-            >
-              <span
-                className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                  activeSection === section.id
-                    ? 'bg-blue-400 scale-125'
-                    : 'bg-slate-600 group-hover:bg-slate-400'
+        {sections.map((section) => {
+          const isVisible = visibleSections.includes(section.id)
+          return (
+            <li key={section.id}>
+              <a
+                href={`#${section.id}`}
+                className={`flex items-center gap-3 group transition-all duration-200 ${
+                  isVisible ? 'text-blue-400' : 'text-slate-500 hover:text-slate-300'
                 }`}
-              />
-              <span className="text-sm">{section.label}</span>
-            </a>
-          </li>
-        ))}
+              >
+                <span
+                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                    isVisible
+                      ? 'bg-blue-400 scale-125'
+                      : 'bg-slate-600 group-hover:bg-slate-400'
+                  }`}
+                />
+                <span className="text-sm">{section.label}</span>
+              </a>
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )
@@ -127,25 +130,32 @@ const Section = ({ id, title, children }) => (
 
 export default function CV() {
   const [showOlderExperience, setShowOlderExperience] = useState(false)
-  const [activeSection, setActiveSection] = useState('experience')
+  const [visibleSections, setVisibleSections] = useState(['experience'])
 
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['experience', 'education', 'languages']
-      const scrollPosition = window.scrollY + 200
+      const viewportTop = window.scrollY + 150
+      const viewportBottom = window.scrollY + window.innerHeight - 100
+      const visible = []
 
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId)
         if (element) {
           const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId)
-            break
+          const sectionBottom = offsetTop + offsetHeight
+
+          // Section is visible if it overlaps with viewport
+          if (offsetTop < viewportBottom && sectionBottom > viewportTop) {
+            visible.push(sectionId)
           }
         }
       }
+
+      setVisibleSections(visible.length > 0 ? visible : ['experience'])
     }
 
+    handleScroll() // Run on mount
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -157,7 +167,7 @@ export default function CV() {
       </Head>
 
       <Layout>
-        <TableOfContents activeSection={activeSection} />
+        <TableOfContents visibleSections={visibleSections} />
 
         <div className="animate-fade-in mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Curriculum Vitae</h1>
@@ -343,7 +353,7 @@ export default function CV() {
                 </button>
               </div>
             ) : (
-              <>
+              <div className="animate-slide-down">
                 <div className="relative pl-8 pb-4">
                   <div className="absolute left-[7px] top-0 bottom-0 w-px bg-slate-700" />
                   <button
@@ -411,7 +421,7 @@ export default function CV() {
                   Technical support and device repairs. Laptop assessment/sales, IP phone installation
                   and hardware registry work.
                 </TimelineItem>
-              </>
+              </div>
             )}
           </Section>
 
