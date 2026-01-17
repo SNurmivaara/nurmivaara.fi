@@ -31,7 +31,7 @@ const TimelineItem = ({ company, role, period, location, skills, projects, child
           {projects.map((project, i) => (
             <div key={i} className="bg-slate-800/50 border border-slate-700/30 rounded-md p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-[10px] uppercase tracking-wider text-slate-300 bg-slate-600 px-1.5 py-0.5 rounded">
+                <span className="text-[10px] uppercase tracking-wider text-blue-300 border border-blue-500/40 px-1.5 py-0.5 rounded">
                   Project
                 </span>
                 {project.period && <span className="text-xs text-slate-500">{project.period}</span>}
@@ -138,7 +138,20 @@ export default function CV() {
               role="Senior Software Engineer"
               period="Jan 2026 - Present"
               location="Helsinki, Finland"
-            />
+              skills={[
+                'Python',
+                'TypeScript',
+                'React',
+                'SWR',
+                'Jotai',
+                'GitHub Actions',
+                'AWS Lightsail',
+                'Aurora PostgreSQL',
+              ]}
+            >
+              Full stack development. Python backend, React/TypeScript frontend. Deployed via GitHub
+              Actions to AWS.
+            </TimelineItem>
 
             <TimelineItem
               company="Nurmivaara Consulting Oy"
@@ -232,11 +245,12 @@ export default function CV() {
                   skills: ['Ruby', 'WordPress', 'Drupal', 'Contentful'],
                 },
                 {
-                  title: 'WordPress Admin',
+                  title: 'WordPress Developer',
                   client: 'PwC',
                   clientDesc: 'Global professional services firm',
-                  description: 'Maintained PwC Uutishuone, the Finnish news blog.',
-                  skills: ['WordPress'],
+                  description:
+                    'Development for PwC Uutishuone, the Finnish news blog. PHP components and styling.',
+                  skills: ['WordPress', 'PHP'],
                 },
                 {
                   title: 'Frontend Developer',
@@ -271,6 +285,17 @@ export default function CV() {
               </div>
             ) : (
               <>
+                <div className="relative pl-8 pb-4">
+                  <div className="absolute left-[7px] top-0 bottom-0 w-px bg-slate-700" />
+                  <button
+                    onClick={() => setShowOlderExperience(false)}
+                    className="flex items-center gap-2 text-slate-500 hover:text-slate-300 transition-colors text-xs"
+                  >
+                    <ChevronRightIcon className="w-3 h-3 rotate-90" />
+                    <span>Hide earlier experience</span>
+                  </button>
+                </div>
+
                 <TimelineItem
                   company="Iriba Oy"
                   role="Software Specialist"
