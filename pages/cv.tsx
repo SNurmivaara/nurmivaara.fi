@@ -1,22 +1,30 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ReactNode, MouseEvent } from 'react'
 import Head from 'next/head'
 import { Layout, LinkedInIcon, ChevronRightIcon } from '../components'
 import { siteConfig } from '../lib/config'
 
-const SkillBadge = ({ children }) => (
+interface SkillBadgeProps {
+  children: ReactNode
+}
+
+const SkillBadge = ({ children }: SkillBadgeProps) => (
   <span className="px-2 py-1 bg-slate-700 text-slate-300 rounded text-xs hover:bg-slate-600 hover:text-slate-200 transition-colors cursor-default">
     {children}
   </span>
 )
 
-const TableOfContents = ({ visibleSections }) => {
+interface TableOfContentsProps {
+  visibleSections: string[]
+}
+
+const TableOfContents = ({ visibleSections }: TableOfContentsProps) => {
   const sections = [
     { id: 'experience', label: 'Experience' },
     { id: 'education', label: 'Education' },
     { id: 'languages', label: 'Languages' },
   ]
 
-  const handleClick = (e, id) => {
+  const handleClick = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault()
     const element = document.getElementById(id)
     if (element) {
@@ -25,7 +33,7 @@ const TableOfContents = ({ visibleSections }) => {
   }
 
   return (
-    <nav className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-40">
+    <nav aria-label="Table of contents" className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-40">
       <ul className="space-y-3">
         {sections.map((section) => {
           const isVisible = visibleSections.includes(section.id)
@@ -34,6 +42,7 @@ const TableOfContents = ({ visibleSections }) => {
               <a
                 href={`#${section.id}`}
                 onClick={(e) => handleClick(e, section.id)}
+                aria-current={isVisible ? 'true' : undefined}
                 className={`flex items-center gap-3 group transition-all duration-300 ${
                   isVisible ? 'text-blue-400' : 'text-slate-500 hover:text-slate-300'
                 }`}
@@ -55,12 +64,29 @@ const TableOfContents = ({ visibleSections }) => {
   )
 }
 
-const TimelineItem = ({ company, role, period, location, skills, projects, children }) => (
+interface Project {
+  title: string
+  client?: string
+  clientDesc?: string
+  period?: string
+  description: string
+  skills?: string[]
+}
+
+interface TimelineItemProps {
+  company: string
+  role: string
+  period: string
+  location?: string
+  skills?: string[]
+  projects?: Project[]
+  children?: ReactNode
+}
+
+const TimelineItem = ({ company, role, period, location, skills, projects, children }: TimelineItemProps) => (
   <div className="relative pl-8 pb-10 last:pb-0 group/item">
-    {/* Timeline line */}
-    <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700 last:hidden" />
-    {/* Timeline dot */}
-    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900 group-hover/item:border-blue-500/50 group-hover/item:bg-slate-800 transition-colors" />
+    <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700 last:hidden" aria-hidden="true" />
+    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900 group-hover/item:border-blue-500/50 group-hover/item:bg-slate-800 transition-colors" aria-hidden="true" />
 
     <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-5 hover:bg-slate-800/50 hover:border-slate-600/50 transition-all duration-200">
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
@@ -115,10 +141,16 @@ const TimelineItem = ({ company, role, period, location, skills, projects, child
   </div>
 )
 
-const EducationItem = ({ school, degree, period }) => (
+interface EducationItemProps {
+  school: string
+  degree: string
+  period: string
+}
+
+const EducationItem = ({ school, degree, period }: EducationItemProps) => (
   <div className="relative pl-8 pb-6 last:pb-0 group/item">
-    <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700" />
-    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900 group-hover/item:border-blue-500/50 group-hover/item:bg-slate-800 transition-colors" />
+    <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700" aria-hidden="true" />
+    <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900 group-hover/item:border-blue-500/50 group-hover/item:bg-slate-800 transition-colors" aria-hidden="true" />
 
     <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4 hover:bg-slate-800/50 hover:border-slate-600/50 transition-all duration-200">
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
@@ -130,7 +162,13 @@ const EducationItem = ({ school, degree, period }) => (
   </div>
 )
 
-const Section = ({ id, title, children }) => (
+interface SectionProps {
+  id: string
+  title: string
+  children: ReactNode
+}
+
+const Section = ({ id, title, children }: SectionProps) => (
   <section id={id} className="mb-12 scroll-mt-24">
     <h2 className="text-sm font-bold mb-6 text-slate-300 uppercase tracking-wider">{title}</h2>
     {children}
@@ -139,12 +177,12 @@ const Section = ({ id, title, children }) => (
 
 export default function CV() {
   const [showOlderExperience, setShowOlderExperience] = useState(false)
-  const [visibleSections, setVisibleSections] = useState(['experience'])
+  const [visibleSections, setVisibleSections] = useState<string[]>(['experience'])
 
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['experience', 'education', 'languages']
-      const visible = []
+      const visible: string[] = []
 
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId)
@@ -152,7 +190,6 @@ export default function CV() {
           const rect = element.getBoundingClientRect()
           const viewportHeight = window.innerHeight
 
-          // Section is visible if any part is in viewport (with some margin)
           const isInView = rect.top < viewportHeight - 100 && rect.bottom > 120
 
           if (isInView) {
@@ -164,7 +201,7 @@ export default function CV() {
       setVisibleSections(visible.length > 0 ? visible : ['experience'])
     }
 
-    handleScroll() // Run on mount
+    handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -201,6 +238,7 @@ export default function CV() {
             href={siteConfig.social.linkedin.url}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View full profile on LinkedIn"
             className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm"
           >
             <LinkedInIcon className="w-4 h-4" />
@@ -348,14 +386,13 @@ export default function CV() {
               acquired Solinor in 2018.
             </TimelineItem>
 
-            {/* Older experience toggle */}
             {!showOlderExperience ? (
               <div className="relative pl-8 pb-10">
-                <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700" />
-                <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900" />
+                <div className="absolute left-[7px] top-3 bottom-0 w-px bg-slate-700" aria-hidden="true" />
+                <div className="absolute left-0 top-[6px] w-[15px] h-[15px] rounded-full border-2 border-slate-600 bg-slate-900" aria-hidden="true" />
                 <button
                   onClick={() => setShowOlderExperience(true)}
-                  aria-expanded="false"
+                  aria-expanded={showOlderExperience}
                   className="flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors text-sm group"
                 >
                   <ChevronRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -365,10 +402,10 @@ export default function CV() {
             ) : (
               <div className="animate-slide-down">
                 <div className="relative pl-8 pb-4">
-                  <div className="absolute left-[7px] top-0 bottom-0 w-px bg-slate-700" />
+                  <div className="absolute left-[7px] top-0 bottom-0 w-px bg-slate-700" aria-hidden="true" />
                   <button
                     onClick={() => setShowOlderExperience(false)}
-                    aria-expanded="true"
+                    aria-expanded={showOlderExperience}
                     className="flex items-center gap-2 text-slate-500 hover:text-slate-300 transition-colors text-xs"
                   >
                     <ChevronRightIcon className="w-3 h-3 rotate-90" />

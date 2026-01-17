@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 export const Nav = () => {
   const router = useRouter()
 
-  const linkClass = (path) =>
+  const linkClass = (path: string) =>
     router.pathname === path
       ? 'text-white hover:text-blue-400 transition-colors'
       : 'text-slate-400 hover:text-blue-400 transition-colors'

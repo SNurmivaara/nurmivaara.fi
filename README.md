@@ -1,12 +1,13 @@
 # Sami Nurmivaara Portfolio
 
-Personal homepage built with **Next.js 16** and **Tailwind CSS**.
+Almost minimal personal web page / CV built with **Next.js** and **Tailwind CSS**.
 
 ## Tech Stack
 
 - **Next.js 16** - React framework
-- **React 18** - UI library
-- **Tailwind CSS 3** - Utility-first CSS
+- **React 19** - UI library
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS 4** - Utility-first CSS
 - **Node.js 22** - Runtime environment
 
 ## Development
@@ -25,6 +26,12 @@ npm run build
 npm start
 ```
 
+## Linting
+
+```bash
+npm run lint
+```
+
 ## Deployment
 
 Deployed to [Vercel](https://vercel.com) at [nurmivaara.fi](https://nurmivaara.fi).
@@ -41,10 +48,9 @@ Vercel will build and deploy automatically. Check deployment status in the [Verc
 
 ## Monitoring
 
-**Vercel (enable in dashboard):**
+**Vercel:**
 - **Analytics** - Page views and visitor data
 - **Speed Insights** - Core Web Vitals performance metrics
-- **Alerts** - Email notifications for failed deployments (Settings → Notifications)
 
 **GitHub:**
 - **Dependabot** - Automatic PRs for dependency security updates (configured in `.github/dependabot.yml`)
