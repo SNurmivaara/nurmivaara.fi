@@ -1,0 +1,186 @@
+{
+  "summary": {
+    "title": "Senior Software Engineer with a Master's in Computer Science. Generalist focused on full stack development, DevOps and cloud architecture.",
+    "badges": ["Full-Stack Development", "Solution Architecture", "DevOps"]
+  },
+  "experience": [
+    {
+      "company": "Inven",
+      "role": "Senior Software Engineer",
+      "period": "Jan 2026 - Present",
+      "location": "Helsinki, Finland",
+      "description": "Full stack development. Python backend, React/TypeScript frontend. Deployed via GitHub Actions to AWS.",
+      "skills": [
+        "Python",
+        "TypeScript",
+        "React",
+        "SWR",
+        "Jotai",
+        "GitHub Actions",
+        "AWS Lightsail",
+        "Aurora PostgreSQL"
+      ]
+    },
+    {
+      "company": "Nurmivaara Consulting Oy",
+      "role": "Founder & Owner",
+      "period": "Mar 2023 - Present",
+      "location": "Helsinki, Finland",
+      "description": "Founded and sole owner. IT consulting until 2026, now an investment holding company managing a six-figure portfolio.",
+      "projects": [
+        {
+          "title": "Senior DevOps Engineer",
+          "client": "Mandatum",
+          "clientDesc": "Finnish life insurance and wealth management company",
+          "period": "May 2023 - Dec 2025",
+          "description": "Platform engineering team. Managed and supported DevOps/Platform needs across the organization.",
+          "skills": ["OpenShift", "Kubernetes", "Dynatrace", "AWS", "Azure", "Terraform"]
+        }
+      ]
+    },
+    {
+      "company": "University of Helsinki",
+      "role": "Graduate Research Assistant",
+      "period": "Jan 2022 - Jul 2022",
+      "location": "Helsinki, Finland",
+      "description": "Part of the Toska research group. Built and maintained Oodikone, a data analysis platform for Finnish student data.",
+      "skills": ["Docker", "Node.js", "React", "PostgreSQL", "Redis", "GitHub Actions"]
+    },
+    {
+      "company": "Firstbeat Technologies",
+      "role": "Senior SW Developer",
+      "period": "May 2021 - Sep 2021",
+      "location": "Espoo, Finland",
+      "description": "HR wellbeing software development. Left to do Master's thesis at University of Helsinki."
+    },
+    {
+      "company": "Nitor",
+      "role": "Software Developer",
+      "period": "May 2019 - May 2021",
+      "location": "Helsinki, Finland",
+      "description": "Consultant focused on AWS, DevOps and backend development. Also did student outreach and recruitment.",
+      "projects": [
+        {
+          "title": "Cloud Full Stack Engineer",
+          "client": "Finnair",
+          "clientDesc": "Finnish national airline",
+          "description": "Large scale data platform for flight data with high integrity DevOps workflow.",
+          "skills": ["AWS", "Serverless", "TypeScript", "Aurora PostgreSQL", "Java"]
+        },
+        {
+          "title": "Full Stack Engineer & Release Manager",
+          "client": "OP",
+          "clientDesc": "Largest financial services group in Finland",
+          "description": "Multiple projects. Managed release trains in a regulated industry.",
+          "skills": ["AWS", "DynamoDB", "S3", "Java", "JavaScript", "SAML"]
+        },
+        {
+          "title": "Full Stack Engineer",
+          "client": "MTV",
+          "clientDesc": "Finnish commercial broadcaster",
+          "description": "Streaming platform and metadata retrieval.",
+          "skills": ["AWS", "TypeScript", "Jenkins", "Coremedia"]
+        }
+      ]
+    },
+    {
+      "company": "Gofore / Solinor",
+      "role": "Software Developer",
+      "period": "Nov 2017 - Apr 2019",
+      "location": "Helsinki, Finland",
+      "description": "Full-stack web development and project work in self-organizing agile teams. Gofore acquired Solinor in 2018.",
+      "projects": [
+        {
+          "title": "Data Migration Specialist",
+          "client": "A-lehdet",
+          "clientDesc": "Finnish magazine publisher",
+          "description": "Migrated data from multiple old WordPress and Drupal deployments to Contentful. Data extraction, cleaning, reformatting and uploading.",
+          "skills": ["Ruby", "WordPress", "Drupal", "Contentful"]
+        },
+        {
+          "title": "WordPress Developer",
+          "client": "PwC",
+          "clientDesc": "Global professional services firm",
+          "description": "Development for PwC Uutishuone, the Finnish news blog. PHP components and styling.",
+          "skills": ["WordPress", "PHP"]
+        },
+        {
+          "title": "Frontend Developer",
+          "client": "Solinor",
+          "description": "Brand renewal site. Frontend development for the new company website before Gofore acquisition.",
+          "skills": ["JavaScript", "TypeScript", "React", "SCSS", "Bootstrap"]
+        },
+        {
+          "title": "Student Recruitment",
+          "description": "Hosted hackathons and company excursions. Company representation at events and annual balls."
+        }
+      ]
+    }
+  ],
+  "olderExperience": [
+    {
+      "company": "Iriba Oy",
+      "role": "Software Specialist",
+      "period": "Aug 2017 - Nov 2017",
+      "location": "Helsinki, Finland",
+      "description": "Software development and testing as an IT consultant."
+    },
+    {
+      "company": "Fairspectrum",
+      "role": "Part-time Developer",
+      "period": "Sep 2016 - Dec 2016",
+      "location": "Helsinki, Finland",
+      "description": "Software development, server monitoring and system administration."
+    },
+    {
+      "company": "Laehtis Oy",
+      "role": "Co-Founder",
+      "period": "Dec 2015 - Dec 2017",
+      "location": "Finland",
+      "description": "Co-founded a mobile device repair business during military service. Did repairs and shared management duties with co-founders."
+    },
+    {
+      "company": "Finnish Defence Forces",
+      "role": "Conscript",
+      "period": "Jun 2015 - Jun 2016",
+      "location": "Finland",
+      "description": "12-month mandatory service. Finished as NCO, currently Staff Sergeant in the reserve."
+    },
+    {
+      "company": "OP Financial Group",
+      "role": "ICT User Management Administrator",
+      "period": "May 2014 - May 2015",
+      "location": "Finland",
+      "description": "Managed access rights and VDI infrastructure across multiple domains and systems.",
+      "skills": ["SAP", "JIRA", "Active Directory", "VDI"]
+    },
+    {
+      "company": "Atos",
+      "role": "Onsite Technician",
+      "period": "Nov 2013 - Jan 2014",
+      "location": "Finland",
+      "description": "Technical support and device repairs. Laptop assessment/sales, IP phone installation and hardware registry work."
+    }
+  ],
+  "education": [
+    {
+      "school": "University of Helsinki",
+      "degree": "Master of Science (MSc), Computer Science",
+      "period": "2021 - 2023"
+    },
+    {
+      "school": "University of Helsinki",
+      "degree": "Bachelor of Science (BSc), Computer Science",
+      "period": "2016 - 2021"
+    },
+    {
+      "school": "Helsinki Business College",
+      "degree": "Vocational Qualification in Business Information Technology",
+      "period": "2012 - 2015"
+    }
+  ],
+  "languages": [
+    { "language": "Finnish", "level": "Native" },
+    { "language": "English", "level": "Professional" }
+  ]
+}
