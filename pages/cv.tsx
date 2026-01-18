@@ -3,6 +3,9 @@ import Head from 'next/head'
 import {
   Layout,
   LinkedInIcon,
+  GitHubIcon,
+  EmailIcon,
+  PrintIcon,
   ChevronRightIcon,
   TimelineEntry,
   Card,
@@ -16,6 +19,12 @@ import cvData from '../lib/cv-data.json'
 const VISIBLE_SKILLS_COUNT = 3
 const SECTION_IDS = ['experience', 'education', 'languages']
 
+interface Testimonial {
+  textFi: string
+  textEn: string
+  source: string
+}
+
 interface Project {
   title: string
   client?: string
@@ -23,6 +32,7 @@ interface Project {
   period?: string
   description: string
   skills?: string[]
+  testimonial?: Testimonial
 }
 
 interface Experience {
@@ -101,6 +111,7 @@ const CollapsibleSkills = ({ skills, visibleCount = VISIBLE_SKILLS_COUNT }: Coll
   }
 
   const visibleSkills = expanded ? skills : skills.slice(0, visibleCount)
+  const hiddenSkills = skills.slice(visibleCount)
   const hiddenCount = skills.length - visibleCount
 
   return (
@@ -108,9 +119,14 @@ const CollapsibleSkills = ({ skills, visibleCount = VISIBLE_SKILLS_COUNT }: Coll
       {visibleSkills.map((skill) => (
         <Badge key={skill}>{skill}</Badge>
       ))}
+      {!expanded && hiddenSkills.map((skill) => (
+        <span key={skill} className="hidden print:inline">
+          <Badge>{skill}</Badge>
+        </span>
+      ))}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="px-2 py-1 text-xs text-slate-400 hover:text-blue-400 transition-colors"
+        className="px-2 py-1 text-xs text-slate-400 hover:text-blue-400 transition-colors print:hidden"
       >
         {expanded ? 'Show less' : `+${hiddenCount} more`}
       </button>
@@ -118,10 +134,40 @@ const CollapsibleSkills = ({ skills, visibleCount = VISIBLE_SKILLS_COUNT }: Coll
   )
 }
 
+// --- Testimonial ---
+
+const TestimonialBlock = ({ testimonial }: { testimonial: Testimonial }) => {
+  const [showEnglish, setShowEnglish] = useState(false)
+
+  return (
+    <div className="mt-4 pt-3 border-t border-slate-700/50">
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-[10px] uppercase tracking-wider text-emerald-300 border border-emerald-500/40 px-1.5 py-0.5 rounded">
+          Client feedback
+        </span>
+      </div>
+      <p className="text-slate-300 text-sm italic leading-relaxed">
+        "{showEnglish ? testimonial.textEn : testimonial.textFi}"
+      </p>
+      <div className="flex items-center justify-between mt-2">
+        <p className="text-slate-400 text-xs">
+          - {testimonial.source}
+        </p>
+        <button
+          onClick={() => setShowEnglish(!showEnglish)}
+          className="text-xs px-2 py-0.5 rounded border border-slate-600 text-slate-400 hover:text-blue-400 hover:border-blue-400/50 transition-colors print:hidden"
+        >
+          {showEnglish ? 'Original (FI)' : 'Translate (EN)'}
+        </button>
+      </div>
+    </div>
+  )
+}
+
 // --- Project Card ---
 
 const ProjectCard = ({ project }: { project: Project }) => (
-  <div className="bg-slate-800/50 border border-slate-700/30 rounded-md p-4">
+  <div className="bg-slate-800/50 border border-slate-600/50 rounded-md p-4">
     <div className="flex items-center gap-2 mb-2">
       <span className="text-[10px] uppercase tracking-wider text-blue-300 border border-blue-500/40 px-1.5 py-0.5 rounded">
         Project
@@ -139,6 +185,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
         <CollapsibleSkills skills={project.skills} />
       </div>
     )}
+    {project.testimonial && <TestimonialBlock testimonial={project.testimonial} />}
   </div>
 )
 
@@ -216,7 +263,7 @@ interface ExpandButtonProps {
 }
 
 const ExpandButton = ({ expanded, onToggle, expandLabel, collapseLabel }: ExpandButtonProps) => (
-  <div className="relative pl-8 pb-4">
+  <div className="relative pl-8 pb-4 print:hidden">
     <div className="absolute left-[7px] top-0 bottom-0 w-px bg-slate-700" aria-hidden="true" />
     {!expanded && (
       <div
@@ -258,7 +305,19 @@ export default function CV() {
       <Layout>
         <TableOfContents visibleSections={visibleSections} />
 
-        <div className="animate-fade-in mb-8">
+        <div className="hidden print:block mb-6">
+          <h1 className="text-2xl font-bold text-black mb-2">Sami Nurmivaara</h1>
+          <p className="text-sm text-gray-700 mb-2">{cvData.summary.title}</p>
+          <div className="flex flex-wrap gap-1">
+            {cvData.summary.badges.map((badge) => (
+              <span key={badge} className="text-xs px-2 py-0.5 bg-gray-100 border border-gray-300 rounded">
+                {badge}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="animate-fade-in mb-8 print:hidden">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Curriculum Vitae</h1>
           <p className="text-lg text-slate-400 max-w-2xl mb-4">{cvData.summary.title}</p>
 
@@ -270,16 +329,44 @@ export default function CV() {
             ))}
           </div>
 
-          <a
-            href={siteConfig.social.linkedin.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View full profile on LinkedIn"
-            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm"
-          >
-            <LinkedInIcon className="w-4 h-4" />
-            <span>View full profile on LinkedIn</span>
-          </a>
+          <div className="flex items-center gap-4">
+            <a
+              href={siteConfig.social.linkedin.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors text-sm"
+            >
+              <LinkedInIcon className="w-4 h-4" />
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href={siteConfig.social.github.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile"
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-purple-400 transition-colors text-sm"
+            >
+              <GitHubIcon className="w-4 h-4" />
+              <span>GitHub</span>
+            </a>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              aria-label="Send email"
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors text-sm"
+            >
+              <EmailIcon className="w-4 h-4" />
+              <span>Email</span>
+            </a>
+            <button
+              onClick={() => window.print()}
+              aria-label="Print CV"
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-amber-400 transition-colors text-sm print:hidden"
+            >
+              <PrintIcon className="w-4 h-4" />
+              <span>Print</span>
+            </button>
+          </div>
         </div>
 
         <div className="animate-slide-up [animation-delay:200ms] opacity-0">
@@ -296,12 +383,18 @@ export default function CV() {
             />
 
             {showOlderExperience && (
-              <div className="animate-slide-down">
+              <div className="animate-slide-down print:hidden">
                 {cvData.olderExperience.map((exp, i) => (
                   <ExperienceItem key={i} exp={exp} />
                 ))}
               </div>
             )}
+
+            <div className="hidden print:block">
+              {cvData.olderExperience.map((exp, i) => (
+                <ExperienceItem key={i} exp={exp} />
+              ))}
+            </div>
           </Section>
 
           <Section id="education" title="Education">
@@ -311,15 +404,24 @@ export default function CV() {
           </Section>
 
           <Section id="languages" title="Languages">
-            <div className="flex gap-6 text-sm pl-8">
+            <div className="flex flex-wrap gap-4 pl-8">
               {cvData.languages.map((lang) => (
-                <div key={lang.language}>
-                  <span className="text-slate-300">{lang.language}</span>
-                  <span className="text-slate-500 ml-2">{lang.level}</span>
+                <div
+                  key={lang.language}
+                  className="flex items-center gap-3 px-4 py-2 bg-slate-700/40 border border-slate-600/50 rounded-lg hover:bg-slate-700/50 hover:border-slate-500/50 transition-all duration-200"
+                >
+                  <span className="font-medium text-white">{lang.language}</span>
+                  <span className="text-xs px-2 py-0.5 bg-slate-600/50 text-slate-300 rounded">
+                    {lang.level}
+                  </span>
                 </div>
               ))}
             </div>
           </Section>
+        </div>
+
+        <div className="print-watermark hidden">
+          © Sami Nurmivaara - For direct contact only - nurmivaara.fi
         </div>
       </Layout>
     </>
