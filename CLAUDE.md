@@ -50,3 +50,47 @@ Shared components in `components/`:
 ## Deployment
 
 Push to `main` auto-deploys to Vercel at `https://nurmivaara.fi`. Node version 22 (see `.nvmrc`).
+
+## CV Data Management
+
+CV data is stored in [lib/cv-data.json](lib/cv-data.json) and rendered by [pages/cv.tsx](pages/cv.tsx).
+
+### Updating CV from LinkedIn ("update cv linkedin")
+
+When the user says "update cv linkedin" and pastes LinkedIn experience text:
+
+1. **Read current data**: Open [lib/cv-data.json](lib/cv-data.json)
+2. **Compare entries**: For each position, check:
+   - Period dates match
+   - Role titles match
+   - Descriptions are consistent
+   - Skills lists are aligned
+   - Project details match (client names, descriptions)
+3. **Report differences**: List what's different between LinkedIn and CV
+4. **Recommend direction**: Usually the CV (website) is more recently updated and should be the source of truth. Suggest LinkedIn updates rather than CV changes.
+5. **If CV needs updates**: Edit [lib/cv-data.json](lib/cv-data.json) directly
+
+### CV Data Structure
+
+```json
+{
+  "summary": { "title": "...", "badges": [...] },
+  "experience": [...],      // Recent/main experience
+  "olderExperience": [...], // Pre-2018 roles (collapsed by default)
+  "education": [...],
+  "languages": [...]
+}
+```
+
+Each experience entry:
+```json
+{
+  "company": "Company Name",
+  "role": "Job Title",
+  "period": "Mon YYYY - Mon YYYY",
+  "location": "City, Country",
+  "description": "Brief description",
+  "skills": ["Skill1", "Skill2"],
+  "projects": [{ "title": "...", "client": "...", "description": "...", "skills": [...] }]
+}
+```
