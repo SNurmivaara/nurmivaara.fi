@@ -1,6 +1,6 @@
 {
   "summary": {
-    "title": "Senior Software Engineer with a Master's in Computer Science. Generalist focused on full stack development, DevOps and cloud architecture.",
+    "title": "Senior Software Engineer with a Master's in Computer Science. Generalist focused on full stack development, DevOps and cloud architecture. Enjoys making the numbers go up.",
     "badges": ["Full-Stack Development", "Solution Architecture", "DevOps"]
   },
   "experience": [
@@ -34,7 +34,12 @@
           "clientDesc": "Finnish life insurance and wealth management company",
           "period": "May 2023 - Dec 2025",
           "description": "Platform engineering team. Managed and supported DevOps/Platform needs across the organization.",
-          "skills": ["OpenShift", "Kubernetes", "Dynatrace", "AWS", "Azure", "Terraform"]
+          "skills": ["OpenShift", "Kubernetes", "Dynatrace", "AWS", "Azure", "Terraform"],
+          "testimonial": {
+            "textFi": "Sami on kokonaisvaltainen ja keskeinen pilari tiimissä. Asia kuin asia, niin hoituu ja nopeasti ja tehokkaasti. Hän selvittää myös uusia haasteita ja ongelmia ja nopeasti ja kattavasti. Ja kaiken lisäksi vielä auttaa ja sparraa kaikkia kärsivällisesti.",
+            "textEn": "Sami is a comprehensive and central pillar of the team. Whatever the task, it gets done quickly and efficiently. He also investigates new challenges and problems quickly and thoroughly. And on top of all that, he helps and coaches everyone patiently.",
+            "source": "Head of DevOps, Mandatum"
+          }
         }
       ]
     },

@@ -11,7 +11,7 @@ export const Card = ({ children, className = '', padding = 'md' }: CardProps) =>
 
   return (
     <div
-      className={`bg-slate-800/30 border border-slate-700/50 rounded-lg ${paddingClass} hover:bg-slate-800/50 hover:border-slate-600/50 transition-all duration-200 ${className}`}
+      className={`bg-slate-700/40 border border-slate-600/50 rounded-lg ${paddingClass} hover:bg-slate-700/50 hover:border-slate-500/50 transition-all duration-200 ${className}`}
     >
       {children}
     </div>
@@ -29,7 +29,7 @@ export const Badge = ({ children, variant = 'skill' }: BadgeProps) => {
   const variantClasses =
     variant === 'highlight'
       ? 'px-3 py-1.5 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-md text-sm'
-      : 'bg-slate-700 text-slate-300 hover:bg-slate-600 hover:text-slate-200 transition-colors cursor-default'
+      : 'bg-slate-700 text-slate-300'
 
   return <span className={`${baseClasses} ${variantClasses}`}>{children}</span>
 }

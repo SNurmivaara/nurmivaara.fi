@@ -1,6 +1,6 @@
 export { Layout } from './Layout'
 export { Nav } from './Nav'
 export { Footer } from './Footer'
-export { LinkedInIcon, GitHubIcon, ChevronRightIcon } from './Icons'
+export { LinkedInIcon, GitHubIcon, ChevronRightIcon, EmailIcon, PrintIcon } from './Icons'
 export { Timeline, TimelineEntry, TimelineMarker } from './Timeline'
 export { Card, Badge, BadgeList } from './Card'
