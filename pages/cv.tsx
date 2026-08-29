@@ -224,9 +224,10 @@ interface EducationItemProps {
   school: string
   degree: string
   period: string
+  activities?: string
 }
 
-const EducationItem = ({ school, degree, period }: EducationItemProps) => (
+const EducationItem = ({ school, degree, period, activities }: EducationItemProps) => (
   <TimelineEntry className="pb-6 last:pb-0">
     <Card padding="sm">
       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
@@ -234,6 +235,7 @@ const EducationItem = ({ school, degree, period }: EducationItemProps) => (
         <span className="text-sm text-slate-500">{period}</span>
       </div>
       <p className="text-slate-400 text-sm">{degree}</p>
+      {activities && <p className="text-slate-500 text-xs mt-2 leading-relaxed">{activities}</p>}
     </Card>
   </TimelineEntry>
 )
@@ -399,7 +401,13 @@ export default function CV() {
 
           <Section id="education" title="Education">
             {cvData.education.map((edu, i) => (
-              <EducationItem key={i} school={edu.school} degree={edu.degree} period={edu.period} />
+              <EducationItem
+                key={i}
+                school={edu.school}
+                degree={edu.degree}
+                period={edu.period}
+                activities={'activities' in edu ? edu.activities : undefined}
+              />
             ))}
           </Section>
 
