@@ -49,4 +49,7 @@ Merging a PR to `main` triggers automatic deployment. Direct pushes to `main` ar
 - **Dependabot** - Weekly dependency and GitHub Actions PRs (configured in `.github/dependabot.yml`)
 - **Auto-merge** - Dependabot PRs merge themselves once CI and the Vercel deploy pass (`.github/workflows/dependabot-auto-merge.yml`). Major bumps of `next`, `react`, `react-dom` or `tailwindcss` are held for manual review, since those can build cleanly and still change the design.
 
-**Not set up:** there is no uptime alerting. The site is statically prerendered and served from Vercel's CDN, so there is no runtime to fall over - the realistic failure modes are a bad deploy or the domain lapsing, neither of which an HTTP ping would catch. Vercel's own deployment-failure notifications are the useful signal if you want one.
+**External:**
+- **UptimeRobot** - Downtime alerts. Set up and verified manually in the [UptimeRobot dashboard](https://uptimerobot.com); there is no configuration for it in this repo, so the dashboard is the only place to check or change it.
+
+Note that an uptime check confirms the site responds, not that it renders correctly. A deploy that builds and returns 200 with a broken layout will not trigger an alert - CI and the Vercel preview are what guard against that.
