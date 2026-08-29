@@ -40,12 +40,13 @@ export default function Home() {
 
         <div className="animate-slide-up [animation-delay:400ms] opacity-0">
           <p className="text-lg text-slate-300 mb-6 max-w-2xl leading-relaxed">
-            Generalist solving problems with a healthy disregard for 'that's not my job'. <br/>
+            Generalist. I like figuring out how the pieces fit together and then building
+            the thing, and I care more about the outcome than which tools get me there. <br/>
             Still get a kick when my code hits prod.
           </p>
           <p className="text-base text-slate-400 mb-12 max-w-2xl leading-relaxed">
-            Tech stack? Whatever solves the problem. <br/>
-            Right now that has been TypeScript, Python and AWS.
+            Tech stack is whatever solves the problem. <br/>
+            Lately that has been TypeScript, Python and AWS.
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 {
   "summary": {
-    "title": "Senior Software Engineer with a Master's in Computer Science. Generalist focused on full stack development, DevOps and cloud architecture. Enjoys making the numbers go up.",
+    "title": "Senior Software Engineer with a Master's in Computer Science. Generalist focused on full stack development, DevOps and cloud architecture. Ten years across consulting, enterprise platforms and product teams.",
     "badges": ["Full-Stack Development", "Solution Architecture", "DevOps"]
   },
   "experience": [
@@ -9,7 +9,19 @@
       "role": "Senior Software Engineer",
       "period": "Jan 2026 - Present",
       "location": "Helsinki, Finland",
-      "description": "Full stack development. Python backend, React/TypeScript frontend. Deployed via GitHub Actions to AWS.",
+      "description": "Full stack development, DevOps and infrastructure. Python backend, React/TypeScript frontend, deployed to AWS via GitHub Actions. Set up monitoring and error tracking alongside continuous feature work.",
+      "projects": [
+        {
+          "title": "V4 architecture",
+          "description": "Designed and drove the shift from a single-page app to a routed workspace-and-tab application, working with two frontend engineers. Built the backend: a server-authoritative sync model where mutations commit server-side, record an operation and emit a sync event that clients reconcile, making multiplayer collaboration and undo architectural properties rather than bolted-on features. The core lens layer routes every entity view through one set of services; the team extended it from there.",
+          "skills": ["System Architecture", "Python", "Redis", "React", "TypeScript", "Socket.IO"]
+        },
+        {
+          "title": "Production database migration",
+          "description": "Migrated the production Aurora RDS instance out of public access and into the VPC solo during my first month, with 15 minutes of total downtime. Redrew the VPC network design and rebuilt VPN access on top of it.",
+          "skills": ["AWS", "Aurora PostgreSQL", "VPC", "Networking", "VPN"]
+        }
+      ],
       "skills": [
         "Python",
         "TypeScript",
@@ -26,7 +38,7 @@
       "role": "Founder & Owner",
       "period": "Mar 2023 - Present",
       "location": "Helsinki, Finland",
-      "description": "Founded and sole owner. IT consulting until 2026, now an investment holding company managing a six-figure portfolio.",
+      "description": "Founded and sole owner. Ran all commercial and operational functions: client acquisition, pricing, contracting, finance and compliance. Delivered senior platform engineering to Finnish enterprise clients through 2025, now an investment holding company.",
       "projects": [
         {
           "title": "Senior DevOps Engineer",
@@ -146,10 +158,10 @@
     },
     {
       "company": "Finnish Defence Forces",
-      "role": "Conscript",
+      "role": "Non-Commissioned Officer",
       "period": "Jun 2015 - Jun 2016",
       "location": "Finland",
-      "description": "12-month mandatory service. Finished as NCO, currently Staff Sergeant in the reserve."
+      "description": "12-month service. Completed NCO school and served in an electronic warfare special forces unit. Staff Sergeant in the reserve."
     },
     {
       "company": "OP Financial Group",
@@ -171,12 +183,14 @@
     {
       "school": "University of Helsinki",
       "degree": "Master of Science (MSc), Computer Science",
-      "period": "2021 - 2023"
+      "period": "2021 - 2023",
+      "activities": "Chairman of TiTOL, the Finnish national union of computer science students. Board member, Matlu ry."
     },
     {
       "school": "University of Helsinki",
       "degree": "Bachelor of Science (BSc), Computer Science",
-      "period": "2016 - 2021"
+      "period": "2016 - 2021",
+      "activities": "Chairman of TKO-äly ry in 2019, the computer science student association, plus various other board duties."
     },
     {
       "school": "Helsinki Business College",

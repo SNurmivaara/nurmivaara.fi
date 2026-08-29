@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
   description: 'Senior Software Engineer',
   email: 'sami@nurmivaara.fi',
   currentCompany: 'Inven',
-  yearsExperience: '10+ years of winging it successfully',
+  yearsExperience: '10+ years across consulting, enterprise and product',
   social: {
     linkedin: {
       url: 'https://linkedin.com/in/snurmivaara/',
