@@ -36,3 +36,6 @@ public/feed.xml
 
 # Random files manually ignored
 ignore-this-*
+# Claude Code local state
+.claude/worktrees/
+.claude/settings.local.json
