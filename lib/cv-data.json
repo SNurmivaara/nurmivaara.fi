@@ -13,7 +13,7 @@
       "projects": [
         {
           "title": "V4 architecture",
-          "description": "Backend lead for the shift from a single-page app to a routed workspace-and-tab application, working with two frontend engineers. Product and design set the direction, including shared tables and multiple people editing the same records concurrently. I designed and built the backend that made it work: a server-authoritative sync model where mutations commit server-side, record an operation and emit a sync event that clients reconcile, making multiplayer collaboration and undo architectural properties rather than bolted-on features. The core lens layer routes every entity view through one set of services; the team extended it from there.",
+          "description": "Rebuilt a single-page app into a routed workspace-and-tab application, to a direction set by product and design: shared tables and multiple people editing the same records concurrently. Drove the backend, and worked on the frontend alongside two full-stack engineers. Every entity type resolves through one shared table layer, so views render through a single component instead of bespoke code per type. Mutations are recorded as operations and broadcast over scoped subscriptions, which made live collaboration and undo architectural properties rather than bolted-on features. Shipped alongside the old UI with no breaking changes, migrating one view at a time. Wrote the architecture reference the team then built from.",
           "skills": ["System Architecture", "Python", "Redis", "React", "TypeScript", "Socket.IO"]
         },
         {
