@@ -17,8 +17,29 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable auto-merge for minor and patch updates
-        if: steps.metadata.outputs.update-type != 'version-update:semver-major'
+      # A green Vercel deploy proves the site builds, not that it still looks
+      # right. Majors of the packages that actually render the page can compile
+      # cleanly and change the design anyway, so those keep a human in the loop.
+      # Everything else merges itself once the required checks pass.
+      - name: Decide whether this can merge itself
+        id: gate
+        env:
+          UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
+          NAMES: ${{ steps.metadata.outputs.dependency-names }}
+        run: |
+          needs_review='next|react|react-dom|tailwindcss'
+          if [ "$UPDATE_TYPE" = 'version-update:semver-major' ] &&
+             printf '%s' "$NAMES" | tr ',' '\n' | tr -d '[:space:]' |
+             grep -qxE "$needs_review"; then
+            echo "auto=false" >> "$GITHUB_OUTPUT"
+            echo "Major bump of a rendering dependency ($NAMES) - leaving for review."
+          else
+            echo "auto=true" >> "$GITHUB_OUTPUT"
+            echo "Auto-merging once required checks pass."
+          fi
+
+      - name: Enable auto-merge
+        if: steps.gate.outputs.auto == 'true'
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
