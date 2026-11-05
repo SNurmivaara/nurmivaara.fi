@@ -1,7 +1,7 @@
 {
   "summary": {
-    "title": "Senior Software Engineer with a Master's in Computer Science. Generalist focused on full stack development, DevOps and cloud architecture. Ten years across consulting, enterprise platforms and product teams.",
-    "badges": ["Full-Stack Development", "Solution Architecture", "DevOps"]
+    "title": "AI Native Senior Software Engineer with a Master's in Computer Science, working across infrastructure, DevOps and full stack development. Nearly three years in a centralized platform team supporting an entire enterprise organization on Kubernetes, AWS and Azure. Ten years across consulting, enterprise platforms and product teams.",
+    "badges": ["DevOps & Platform Engineering", "AWS", "Solution Architecture", "Full-Stack Development"]
   },
   "experience": [
     {
@@ -9,44 +9,44 @@
       "role": "Senior Software Engineer",
       "period": "Jan 2026 - Present",
       "location": "Helsinki, Finland",
-      "description": "Full stack development, DevOps and infrastructure. Python backend, React/TypeScript frontend, deployed to AWS via GitHub Actions. Set up monitoring and error tracking alongside continuous feature work.",
+      "description": "Full stack, DevOps and infrastructure: everything between a feature idea and it running in production. Python backend, React/TypeScript frontend, deployed to AWS via GitHub Actions. Set up monitoring and error tracking alongside continuous feature work.",
       "projects": [
-        {
-          "title": "V4 architecture",
-          "description": "Rebuilt a single-page app into a routed workspace-and-tab application, to a direction set by product and design: shared tables and multiple people editing the same records concurrently. Drove the backend, and worked on the frontend alongside two full-stack engineers. Every entity type resolves through one shared table layer, so views render through a single component instead of bespoke code per type. Mutations are recorded as operations and broadcast over scoped subscriptions, which made live collaboration and undo architectural properties rather than bolted-on features. Shipped alongside the old UI with no breaking changes, migrating one view at a time. Wrote the architecture reference the team then built from.",
-          "skills": ["System Architecture", "Python", "Redis", "React", "TypeScript", "Socket.IO"]
-        },
         {
           "title": "Production database migration",
           "description": "Migrated the production Aurora RDS instance out of public access and into the VPC solo during my first month, with 15 minutes of total downtime. Redrew the VPC network design and rebuilt VPN access on top of it.",
           "skills": ["AWS", "Aurora PostgreSQL", "VPC", "Networking", "VPN"]
+        },
+        {
+          "title": "V4 architecture",
+          "description": "Rebuilt a single-page app into a routed workspace-and-tab application, to a direction set by product and design: shared tables and multiple people editing the same records concurrently. Drove the backend, and worked on the frontend alongside two full-stack engineers. Every entity type resolves through one shared table layer, so views render through a single component instead of bespoke code per type. Mutations are recorded as operations and broadcast over scoped subscriptions, which made live collaboration and undo architectural properties rather than bolted-on features. Shipped alongside the old UI with no breaking changes, migrating one view at a time. Wrote the architecture reference the team then built from.",
+          "skills": ["System Architecture", "Python", "Redis", "React", "TypeScript", "Socket.IO"]
         }
       ],
       "skills": [
+        "AWS Lightsail",
+        "GitHub Actions",
+        "Aurora PostgreSQL",
         "Python",
         "TypeScript",
         "React",
         "SWR",
-        "Jotai",
-        "GitHub Actions",
-        "AWS Lightsail",
-        "Aurora PostgreSQL"
+        "Jotai"
       ]
     },
     {
       "company": "Nurmivaara Consulting Oy",
-      "role": "Founder & Owner",
-      "period": "Mar 2023 - Present",
+      "role": "Senior Platform Engineer",
+      "period": "Mar 2023 - Dec 2025",
       "location": "Helsinki, Finland",
-      "description": "Founded and sole owner. Ran all commercial and operational functions: client acquisition, pricing, contracting, finance and compliance. Delivered senior platform engineering to Finnish enterprise clients through 2025, now an investment holding company.",
+      "description": "Founded and sole owner. Ran all commercial and operational functions: client acquisition, pricing, contracting, finance and compliance. Delivered senior platform engineering to Finnish enterprise clients 2023-2025. Now an investment holding company.",
       "projects": [
         {
-          "title": "Senior DevOps Engineer",
+          "title": "Senior DevOps/Platform Engineer",
           "client": "Mandatum",
           "clientDesc": "Finnish life insurance and wealth management company",
-          "period": "May 2023 - Dec 2025",
-          "description": "Platform engineering team. Managed and supported DevOps/Platform needs across the organization.",
-          "skills": ["OpenShift", "Kubernetes", "Dynatrace", "AWS", "Azure", "Terraform"],
+          "period": "Mar 2023 - Dec 2025",
+          "description": "Centralized platform engineering team, managing, developing and supporting the DevOps/Platform needs of the entire organization. Migrated the whole OpenShift environment from the ELK stack to LGTM (the OpenShift Operator variant). Operated a private-cloud Dynatrace connected to the same cluster, including writing compatibility mutating admission webhooks. Handled almost a hundred project migrations from an old microservices architecture to a cell-based one.",
+          "skills": ["OpenShift", "Kubernetes", "Terraform", "AWS", "Azure", "Dynatrace", "LGTM Stack", "ELK Stack", "Admission Webhooks"],
           "testimonial": {
             "textFi": "Sami on kokonaisvaltainen ja keskeinen pilari tiimissä. Asia kuin asia, niin hoituu ja nopeasti ja tehokkaasti. Hän selvittää myös uusia haasteita ja ongelmia ja nopeasti ja kattavasti. Ja kaiken lisäksi vielä auttaa ja sparraa kaikkia kärsivällisesti.",
             "textEn": "Sami is a comprehensive and central pillar of the team. Whatever the task, it gets done quickly and efficiently. He also investigates new challenges and problems quickly and thoroughly. And on top of all that, he helps and coaches everyone patiently.",
@@ -60,36 +60,36 @@
       "role": "Graduate Research Assistant",
       "period": "Jan 2022 - Jul 2022",
       "location": "Helsinki, Finland",
-      "description": "Part of the Toska research group. Built and maintained Oodikone, a data analysis platform for Finnish student data.",
-      "skills": ["Docker", "Node.js", "React", "PostgreSQL", "Redis", "GitHub Actions"]
+      "description": "Part of the Toska research group. Built and maintained Oodikone, a data analysis platform for Finnish student data. It extracts, formats and enriches data from the national study register Sisu and presents it to non-technical staff for decision making.",
+      "skills": ["Docker", "GitHub Actions", "NATS", "Node.js", "React", "Material-UI", "PostgreSQL", "Sequelize", "Redis", "Cypress"]
     },
     {
       "company": "Firstbeat Technologies",
-      "role": "Senior SW Developer",
+      "role": "Senior Software Engineer",
       "period": "May 2021 - Sep 2021",
       "location": "Espoo, Finland",
       "description": "HR wellbeing software development. Left to do Master's thesis at University of Helsinki."
     },
     {
       "company": "Nitor",
-      "role": "Software Developer",
+      "role": "Software Engineer",
       "period": "May 2019 - May 2021",
       "location": "Helsinki, Finland",
-      "description": "Consultant focused on AWS, DevOps and backend development. Also did student outreach and recruitment.",
+      "description": "Consultant focused on lean-agile, AWS, DevOps and backend development. Also did student outreach, recruitment and internal company culture development.",
       "projects": [
         {
           "title": "Cloud Full Stack Engineer",
           "client": "Finnair",
           "clientDesc": "Finnish national airline",
-          "description": "Large scale data platform for flight data with high integrity DevOps workflow.",
-          "skills": ["AWS", "Serverless", "TypeScript", "Aurora PostgreSQL", "Java"]
+          "description": "Large scale data platform for managing flight data on AWS and Serverless, with a high integrity DevOps workflow.",
+          "skills": ["AWS", "Serverless", "AWS CodePipeline", "TypeScript", "Aurora PostgreSQL", "API Gateway", "Bash", "Java"]
         },
         {
           "title": "Full Stack Engineer & Release Manager",
           "client": "OP",
           "clientDesc": "Largest financial services group in Finland",
           "description": "Multiple projects. Managed release trains in a regulated industry.",
-          "skills": ["AWS", "DynamoDB", "S3", "Java", "JavaScript", "SAML"]
+          "skills": ["AWS", "DynamoDB", "S3", "API Gateway", "Java", "JavaScript", "SAML"]
         },
         {
           "title": "Full Stack Engineer",
@@ -102,10 +102,10 @@
     },
     {
       "company": "Gofore / Solinor",
-      "role": "Software Developer",
+      "role": "Software Engineer",
       "period": "Nov 2017 - Apr 2019",
       "location": "Helsinki, Finland",
-      "description": "Full-stack web development and project work in self-organizing agile teams. Gofore acquired Solinor in 2018.",
+      "description": "Full-stack web development, data management and migrations, and project work in self-organizing agile teams. Gofore acquired Solinor in 2018.",
       "projects": [
         {
           "title": "Data Migration Specialist",
@@ -200,6 +200,9 @@
   ],
   "languages": [
     { "language": "Finnish", "level": "Native" },
-    { "language": "English", "level": "Professional" }
+    { "language": "English", "level": "Professional" },
+    { "language": "Swedish", "level": "Elementary" },
+    { "language": "French", "level": "Elementary" },
+    { "language": "Russian", "level": "Elementary" }
   ]
 }

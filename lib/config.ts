@@ -18,8 +18,8 @@ interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   name: 'Sami Nurmivaara',
-  title: 'Senior Software Engineer',
-  description: 'Senior Software Engineer',
+  title: 'AI Native Senior Software Engineer',
+  description: 'AI Native Senior Software Engineer',
   email: 'sami@nurmivaara.fi',
   currentCompany: 'Inven',
   yearsExperience: '10+ years across consulting, enterprise and product',
